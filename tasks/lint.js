@@ -18,10 +18,10 @@ gulp.task('lint', function () {
 	return gulp
 		.src([
 			path.join(global.paths.app,    'js', '**', '*.js'),
-			path.join(global.paths.config, '**', '*.js'),
-			path.join(global.paths.tasks,  '**', '*.js')
+			path.join(global.paths.config, '**', '*.js')
 		])
 		.pipe(plumber())
+		//.pipe(eslint({configFile: path.join(process.cwd(), '.eslintrc')}))
 		.pipe(eslint())
 		.pipe(eslint.format('stylish', function ( result ) {
 			// make nice output
