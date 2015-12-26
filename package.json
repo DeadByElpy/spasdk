@@ -6,9 +6,10 @@
         "name": "Stanislav Kalashnik",
         "email": "sk@infomir.eu"
     },
-    "repository": "stbsdk/gulp",
+    "repository": "spasdk/gulp",
     "scripts": {
-        "lint": "eslint *.js"
+        "lint": "eslint *.js",
+        "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
         "code-proxy": "1.*.*",
@@ -42,13 +43,11 @@
         "webpack": "1.*.*"
     },
     "keywords": [
-        "stb",
-        "sdk",
-        "device",
-        "tv",
-        "devkit",
+        "spa",
+        "spasdk",
         "framework",
         "gulp",
+        "develop",
         "tasks"
     ],
     "license": "GPL-3.0"
