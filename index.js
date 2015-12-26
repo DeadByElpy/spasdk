@@ -8,8 +8,8 @@
 'use strict';
 
 var path = require('path'),
-	gulp = require('gulp'),
-	load = require('./lib/tools').load;
+    gulp = require('gulp'),
+    load = require('./lib/tools').load;
 
 // enable colors in console
 require('tty-colors');
@@ -18,11 +18,11 @@ global.paths = global.paths || {};
 
 // general app paths
 //global.paths = {
-//	root:   process.env.PATH_ROOT   || __dirname,
-//	tasks:  process.env.PATH_TASKS  || path.join(__dirname, 'tasks'),
-//	app:    process.env.PATH_APP    || path.join(__dirname, 'app'),
-//	build:  process.env.PATH_BUILD  || path.join(__dirname, 'build'),
-//	config: process.env.PATH_CONFIG || path.join(__dirname, 'config')
+//    root:   process.env.PATH_ROOT   || __dirname,
+//    tasks:  process.env.PATH_TASKS  || path.join(__dirname, 'tasks'),
+//    app:    process.env.PATH_APP    || path.join(__dirname, 'app'),
+//    build:  process.env.PATH_BUILD  || path.join(__dirname, 'build'),
+//    config: process.env.PATH_CONFIG || path.join(__dirname, 'config')
 //};
 
 global.paths.root   = global.paths.root   || process.env.PATH_ROOT   || process.cwd();
