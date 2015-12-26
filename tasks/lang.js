@@ -5,7 +5,7 @@
  * Header entries description: https://www.gnu.org/software/gettext/manual/html_node/Header-Entry.html
  * Plural-forms parameter:     https://www.gnu.org/software/gettext/manual/html_node/Plural-forms.html
  *
- * @author Stanislav Kalashnik <sk@infomir.eu>
+ * @author Stanislav Kalashnik <darkpark.main@gmail.com>
  * @license GNU GENERAL PUBLIC LICENSE Version 3
  */
 

@@ -2,7 +2,7 @@
  * Main entry point.
  * Rebuild everything, start all watchers and servers.
  *
- * @author Stanislav Kalashnik <sk@infomir.eu>
+ * @author Stanislav Kalashnik <darkpark.main@gmail.com>
  * @license GNU GENERAL PUBLIC LICENSE Version 3
  */
 

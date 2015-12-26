@@ -2,7 +2,7 @@
  * Read-eval-print loop task.
  * The module exports a readline instance.
  *
- * @author Stanislav Kalashnik <sk@infomir.eu>
+ * @author Stanislav Kalashnik <darkpark.main@gmail.com>
  * @license GNU GENERAL PUBLIC LICENSE Version 3
  */
 

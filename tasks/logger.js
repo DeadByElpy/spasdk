@@ -1,7 +1,7 @@
 /**
  * WebSocket server to translate log messages from STB to a desktop console.
  *
- * @author Stanislav Kalashnik <sk@infomir.eu>
+ * @author Stanislav Kalashnik <darkpark.main@gmail.com>
  * @license GNU GENERAL PUBLIC LICENSE Version 3
  */
 

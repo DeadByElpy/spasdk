@@ -1,7 +1,7 @@
 /**
  * Open the default web browser with the given page.
  *
- * @author Stanislav Kalashnik <sk@infomir.eu>
+ * @author Stanislav Kalashnik <darkpark.main@gmail.com>
  * @license GNU GENERAL PUBLIC LICENSE Version 3
  */
 
