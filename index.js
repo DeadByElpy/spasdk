@@ -36,7 +36,7 @@ global.paths.config = global.paths.config || process.env.PATH_CONFIG || path.joi
 //require('./tasks/img');
 require('./tasks/jade');
 require('./tasks/lint');
-//require('./tasks/repl');
+require('./tasks/repl');
 
 
 // public
