@@ -31,10 +31,10 @@ global.paths.config = global.paths.config || process.env.PATH_CONFIG || path.joi
 
 
 // load all tasks
-load(path.join(__dirname, 'tasks'));
+//load(path.join(__dirname, 'tasks'));
 
 //require('./tasks/img');
-//require('./tasks/jade');
+require('./tasks/jade');
 //require('./tasks/lint');
 //require('./tasks/repl');
 
