@@ -19,38 +19,38 @@ var path  = require('path'),
 gulp.task('watch', function ( done ) {
     // img
     watch([
-        path.join(global.paths.src, 'img', '**', '*')
+        path.join(process.env.PATH_SRC, 'img', '**', '*')
     ], function () {
         gulp.start('img');
     });
 
     // font
     watch([
-        path.join(global.paths.src, 'font', '**', '*')
+        path.join(process.env.PATH_SRC, 'font', '**', '*')
     ], function () {
         gulp.start('font');
     });
 
     // webpack
     watch([
-        path.join(global.paths.src, 'js', '**', '*.js'),
-        path.join(global.paths.config, 'app[.]js'),
-        path.join(global.paths.config, 'metrics[.]js')
+        path.join(process.env.PATH_SRC, 'js', '**', '*.js'),
+        path.join(process.env.PATH_CFG, 'app[.]js'),
+        path.join(process.env.PATH_CFG, 'metrics[.]js')
     ], function () {
         gulp.start('webpack:develop');
     });
 
     // jade
     watch([
-        path.join(global.paths.src, 'jade', '**', '*.jade')
+        path.join(process.env.PATH_SRC, 'jade', '**', '*.jade')
     ], function () {
         gulp.start('jade:develop');
     });
 
     // less
     watch([
-        path.join(global.paths.src, 'less', '**', '*.{less,js}'),
-        path.join(global.paths.config, 'metrics[.]js')
+        path.join(process.env.PATH_SRC, 'less', '**', '*.{less,js}'),
+        path.join(process.env.PATH_CFG, 'metrics[.]js')
     ], function () {
         gulp.start('less:develop');
     });

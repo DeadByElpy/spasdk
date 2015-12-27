@@ -17,8 +17,8 @@ var path    = require('path'),
 gulp.task('lint', function () {
     return gulp
         .src([
-            path.join(global.paths.src,    'js', '**', '*.js'),
-            path.join(global.paths.config, '**', '*.js')
+            path.join(process.env.PATH_SRC, 'js', '**', '*.js'),
+            path.join(process.env.PATH_CFG, '**', '*.js')
         ])
         .pipe(plumber())
         //.pipe(eslint({configFile: path.join(process.cwd(), '.eslintrc')}))

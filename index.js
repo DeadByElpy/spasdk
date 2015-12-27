@@ -7,27 +7,19 @@
 
 var path = require('path'),
     gulp = require('gulp'),
-    load = require('./lib/tools').load;
+    load = require('./lib/tools').load,
+    env  = process.env;
+
 
 // enable colors in console
 require('tty-colors');
 
-global.paths = global.paths || {};
 
-// general app paths
-//global.paths = {
-//    root:   process.env.PATH_ROOT   || __dirname,
-//    tasks:  process.env.PATH_TASKS  || path.join(__dirname, 'tasks'),
-//    app:    process.env.PATH_APP    || path.join(__dirname, 'app'),
-//    build:  process.env.PATH_BUILD  || path.join(__dirname, 'build'),
-//    config: process.env.PATH_CONFIG || path.join(__dirname, 'config')
-//};
-
-global.paths.root   = global.paths.root   || process.env.PATH_ROOT   || process.cwd();
-global.paths.app    = global.paths.app    || process.env.PATH_BUILD  || path.join(global.paths.root, 'app');
-global.paths.src    = global.paths.src    || process.env.PATH_APP    || path.join(global.paths.root, 'src');
-global.paths.config = global.paths.config || process.env.PATH_CONFIG || path.join(global.paths.root, 'config');
-
+// set global paths
+env.PATH_ROOT = env.PATH_ROOT || process.cwd();
+env.PATH_APP  = env.PATH_APP  || path.join(env.PATH_ROOT, 'app');
+env.PATH_SRC  = env.PATH_SRC  || path.join(env.PATH_ROOT, 'src');
+env.PATH_CFG  = env.PATH_CFG  || path.join(env.PATH_ROOT, 'config');
 
 
 // load all tasks

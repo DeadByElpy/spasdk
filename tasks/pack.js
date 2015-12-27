@@ -14,14 +14,14 @@ var path    = require('path'),
     plumber = require('gulp-plumber'),
     zip     = require('gulp-zip'),
     del     = require('del'),
-    pkgInfo = require(path.join(global.paths.root, 'package.json')),
+    pkgInfo = require(path.join(process.env.PATH_ROOT, 'package.json')),
     zipName = 'build.%s.%s.%s.zip',
     title   = 'pack    '.inverse;
 
 
 // remove all pack zip files
 gulp.task('pack:clean', function () {
-    return del([path.join(global.paths.root, util.format(zipName, '*', '*', '*'))]);
+    return del([path.join(process.env.PATH_ROOT, util.format(zipName, '*', '*', '*'))]);
 });
 
 
@@ -31,17 +31,18 @@ gulp.task('pack:develop', function () {
 
     log(title, 'create archive: ' +  outName.bold);
 
-    return gulp.src([
-            path.join(global.paths.app, 'font', '**', '*'),
-            path.join(global.paths.app, 'img', '**', '*'),
-            path.join(global.paths.app, 'css', 'develop.*'),
-            path.join(global.paths.app, 'js', 'develop.*'),
-            path.join(global.paths.app, 'develop.html')
+    return gulp
+        .src([
+            path.join(process.env.PATH_APP, 'font', '**', '*'),
+            path.join(process.env.PATH_APP, 'img', '**', '*'),
+            path.join(process.env.PATH_APP, 'css', 'develop.*'),
+            path.join(process.env.PATH_APP, 'js', 'develop.*'),
+            path.join(process.env.PATH_APP, 'develop.html')
         ],
-        {base: global.paths.app})
+        {base: process.env.PATH_APP})
         .pipe(plumber())
         .pipe(zip(outName))
-        .pipe(gulp.dest(global.paths.root));
+        .pipe(gulp.dest(process.env.PATH_ROOT));
 });
 
 
@@ -51,17 +52,18 @@ gulp.task('pack:release', function () {
 
     log(title, 'create archive: ' +  outName.bold);
 
-    return gulp.src([
-            path.join(global.paths.app, 'font', '**', '*'),
-            path.join(global.paths.app, 'img', '**', '*'),
-            path.join(global.paths.app, 'css', 'release.*'),
-            path.join(global.paths.app, 'js', 'release.*'),
-            path.join(global.paths.app, 'index.html')
+    return gulp
+        .src([
+            path.join(process.env.PATH_APP, 'font', '**', '*'),
+            path.join(process.env.PATH_APP, 'img', '**', '*'),
+            path.join(process.env.PATH_APP, 'css', 'release.*'),
+            path.join(process.env.PATH_APP, 'js', 'release.*'),
+            path.join(process.env.PATH_APP, 'index.html')
         ],
-        {base: global.paths.app})
+        {base: process.env.PATH_APP})
         .pipe(plumber())
         .pipe(zip(outName))
-        .pipe(gulp.dest(global.paths.root));
+        .pipe(gulp.dest(process.env.PATH_ROOT));
 });
 
 

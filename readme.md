@@ -21,6 +21,21 @@ Add to the scope:
 var gulp = require('spa-gulp');
 ```
 
+#### Environment variables
+
+ Name      | Description
+-----------|-------------
+ PATH_ROOT | main application directory (where `package.json` is located)
+ PATH_APP  | directory with files ready to be deployed
+ PATH_SRC  | directory with source files to generate development and release application files
+ PATH_CFG  | directory with configuration files for tasks and application itself
+
+These variables can be redefined in run-time:
+
+```bash
+PATH_ROOT=some_other_dir gulp
+```
+
 
 ## Contribution ##
 

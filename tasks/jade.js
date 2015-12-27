@@ -13,15 +13,15 @@ var path    = require('path'),
     plumber = require('gulp-plumber'),
     rename  = require('gulp-rename'),
     del     = require('del'),
-    pkgInfo = require(path.join(global.paths.root, 'package.json')),
-    entry   = path.join(global.paths.src, 'jade', 'main.jade');
+    pkgInfo = require(path.join(process.env.PATH_ROOT, 'package.json')),
+    entry   = path.join(process.env.PATH_SRC, 'jade', 'main.jade');
 
 
 // remove all html files
 gulp.task('jade:clean', function () {
     return del([
-        path.join(global.paths.app, 'index.html'),
-        path.join(global.paths.app, 'develop.html')
+        path.join(process.env.PATH_APP, 'index.html'),
+        path.join(process.env.PATH_APP, 'develop.html')
     ]);
 });
 
@@ -40,7 +40,7 @@ gulp.task('jade:develop', function () {
             }
         }))
         .pipe(rename('develop.html'))
-        .pipe(gulp.dest(global.paths.app));
+        .pipe(gulp.dest(process.env.PATH_APP));
 });
 
 
@@ -58,7 +58,7 @@ gulp.task('jade:release', function () {
             }
         }))
         .pipe(rename('index.html'))
-        .pipe(gulp.dest(global.paths.app));
+        .pipe(gulp.dest(process.env.PATH_APP));
 });
 
 

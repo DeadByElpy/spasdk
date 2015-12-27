@@ -11,7 +11,7 @@ var path   = require('path'),
     gulp   = require('gulp'),
     log    = require('gulp-util').log,
     glr    = require('gulp-livereload'),
-    config = require(path.join(global.paths.config, 'static')),
+    config = require(path.join(process.env.PATH_CFG, 'static')),
     title  = 'static  '.inverse;
 
 
@@ -21,7 +21,7 @@ gulp.task('static', function ( done ) {
 
     if ( config.active ) {
         // rfc 2616 compliant HTTP static file server
-        files  = new (require('node-static').Server)(global.paths.app, {cache: false});
+        files  = new (require('node-static').Server)(process.env.PATH_APP, {cache: false});
         msInit = +new Date();
 
         require('http').createServer(function createServer ( request, response ) {
@@ -54,7 +54,7 @@ gulp.task('static', function ( done ) {
             }).resume();
         }).listen(config.port).on('listening', function eventListenerListening () {
             var ip   = require('ip').address(),
-                msg  = 'Serve static files in build directory ' + global.paths.app,
+                msg  = 'Serve static files in build directory ' + process.env.PATH_APP,
                 hash = new Array(msg.length + 1).join('-');
 
             log(title, hash);
@@ -69,9 +69,9 @@ gulp.task('static', function ( done ) {
             glr.listen({quiet: true, port: config.livereload === true ? 35729 : config.livereload});
 
             // reload
-            gulp.watch([path.join(global.paths.app, '**', '*.{html,js,json,css}')]).on('change', function ( file ) {
+            gulp.watch([path.join(process.env.PATH_APP, '**', '*.{html,js,json,css}')]).on('change', function ( file ) {
                 // report
-                log('watch   '.bgCyan.black, 'reload ' + ('./' + path.relative(global.paths.app, file.path)).bold);
+                log('watch   '.bgCyan.black, 'reload ' + ('./' + path.relative(process.env.PATH_APP, file.path)).bold);
                 // reload
                 glr.changed(file);
             });

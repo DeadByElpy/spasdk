@@ -16,13 +16,13 @@ var fs      = require('fs'),
     gulp    = require('gulp'),
     log     = require('gulp-util').log,
     exec    = require('child_process').exec,
-    config  = require(path.join(global.paths.config, 'lang')),
-    pkgInfo = require(path.join(global.paths.root, 'package.json')),
+    config  = require(path.join(process.env.PATH_CFG, 'lang')),
+    pkgInfo = require(path.join(process.env.PATH_ROOT, 'package.json')),
     title   = 'lang    '.inverse;
 
 
 function po2js ( poFile, jsonFile ) {
-    var jsonDir  = path.join(global.paths.app, 'lang'),
+    var jsonDir  = path.join(process.env.PATH_APP, 'lang'),
         po       = require('gettext-parser').po.parse(fs.readFileSync(poFile, {encoding: 'utf8'})),
         contexts = po.translations,
         result   = {
@@ -147,8 +147,8 @@ function msgmerge ( langName, potFile, poFile, callback ) {
 
 
 function xgettext ( callback ) {
-    var srcFile = path.join(global.paths.app, 'js', 'develop.js'),
-        dstFile = path.join(global.paths.src, 'lang', 'messages.pot'),
+    var srcFile = path.join(process.env.PATH_APP, 'js', 'develop.js'),
+        dstFile = path.join(process.env.PATH_SRC, 'lang', 'messages.pot'),
         title   = 'xgettext'.inverse,
         params  = [
             'xgettext',
@@ -225,8 +225,8 @@ gulp.task('lang', function ( done ) {
             }
 
             config.languages.forEach(function ( langName ) {
-                var poFile   = path.join(global.paths.src,   'lang', langName + '.po'),
-                    jsonFile = path.join(global.paths.app, 'lang', langName + '.json');
+                var poFile   = path.join(process.env.PATH_SRC,   'lang', langName + '.po'),
+                    jsonFile = path.join(process.env.PATH_APP, 'lang', langName + '.json');
 
                 if ( fs.existsSync(poFile) ) {
                     // merge existing pot and po files

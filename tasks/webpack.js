@@ -14,8 +14,8 @@ var path     = require('path'),
     webpack  = require('webpack-stream'),
     log      = require('gulp-util').log,
     del      = require('del'),
-    pkgInfo  = require(path.join(global.paths.root, 'package.json')),
-    wpkInfo  = require(path.join(global.paths.root, 'node_modules', 'webpack', 'package.json')),
+    pkgInfo  = require(path.join(process.env.PATH_ROOT, 'package.json')),
+    wpkInfo  = require(path.join(process.env.PATH_ROOT, 'node_modules', 'webpack', 'package.json')),
     warnings = false;
 
 
@@ -95,8 +95,8 @@ function report ( err, stats ) {
 // remove all js and map files
 gulp.task('webpack:clean', function () {
     return del([
-        path.join(global.paths.app, 'js', 'release.*'),
-        path.join(global.paths.app, 'js', 'develop.*')
+        path.join(process.env.PATH_APP, 'js', 'release.*'),
+        path.join(process.env.PATH_APP, 'js', 'develop.*')
     ]);
 });
 
@@ -104,7 +104,7 @@ gulp.task('webpack:clean', function () {
 // generate js files
 gulp.task('webpack:develop', function () {
     return gulp
-        .src(path.join(global.paths.src, 'js', 'stb', 'develop', 'main.js'))
+        .src(path.join(process.env.PATH_SRC, 'js', 'stb', 'develop', 'main.js'))
         .pipe(plumber())
         .pipe(webpack({
             output: {
@@ -113,7 +113,7 @@ gulp.task('webpack:develop', function () {
                 sourcePrefix: '\t\t\t'
             },
             resolve: {
-                //root: path.join(global.paths.src, 'js'),
+                //root: path.join(process.env.PATH_SRC, 'js'),
                 extensions:['', '.js']
             },
             devtool: 'source-map',
@@ -136,14 +136,14 @@ gulp.task('webpack:develop', function () {
                 })
             ]
         }, null, report))
-        .pipe(gulp.dest(path.join(global.paths.app, 'js')));
+        .pipe(gulp.dest(path.join(process.env.PATH_APP, 'js')));
 });
 
 
 // generate js files
 gulp.task('webpack:release', function () {
     return gulp
-        .src(path.join(global.paths.src, 'js', 'main.js'))
+        .src(path.join(process.env.PATH_SRC, 'js', 'main.js'))
         .pipe(plumber())
         .pipe(webpack({
             output: {
@@ -186,7 +186,7 @@ gulp.task('webpack:release', function () {
                 ))
             ]
         }, null, report))
-        .pipe(gulp.dest(path.join(global.paths.app, 'js')));
+        .pipe(gulp.dest(path.join(process.env.PATH_APP, 'js')));
 });
 
 

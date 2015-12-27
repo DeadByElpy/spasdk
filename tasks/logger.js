@@ -11,7 +11,7 @@ var path   = require('path'),
     gulp   = require('gulp'),
     log    = require('gulp-util').log,
     ws     = require('ws'),
-    config = require(path.join(global.paths.config, 'logger')),
+    config = require(path.join(process.env.PATH_CFG, 'logger')),
     title  = 'logger  '.inverse.yellow;
 
 
