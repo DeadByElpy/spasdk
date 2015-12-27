@@ -35,10 +35,6 @@
         "webpack-stream": "2.*.*",
         "ws": "0.*.*"
     },
-    "devDependencies": {
-        "jsdoc": "3.*.*",
-        "webpack": "1.*.*"
-    },
     "keywords": [
         "spa",
         "spasdk",
