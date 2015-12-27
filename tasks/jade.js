@@ -13,7 +13,8 @@ var path    = require('path'),
     plumber = require('gulp-plumber'),
     rename  = require('gulp-rename'),
     del     = require('del'),
-    pkgInfo = require(path.join(global.paths.root, 'package.json'));
+    pkgInfo = require(path.join(global.paths.root, 'package.json')),
+    entry   = path.join(global.paths.src, 'jade', 'main.jade');
 
 
 // remove all html files
@@ -28,13 +29,13 @@ gulp.task('jade:clean', function () {
 // generate html files
 gulp.task('jade:develop', function () {
     return gulp
-        .src(path.join(global.paths.src, 'jade', 'main.jade'))
+        .src(entry)
         .pipe(plumber())
         .pipe(jade({
             pretty: '\t',
             locals: {
                 develop: true,
-                title:   '[develop] ' + pkgInfo.name,
+                title: '[develop] ' + pkgInfo.name,
                 version: pkgInfo.version
             }
         }))
@@ -46,13 +47,13 @@ gulp.task('jade:develop', function () {
 // generate html files
 gulp.task('jade:release', function () {
     return gulp
-        .src(path.join(global.paths.src, 'jade', 'main.jade'))
+        .src(entry)
         .pipe(plumber())
         .pipe(jade({
             pretty: false,
             locals: {
                 develop: false,
-                title:   '[release] ' + pkgInfo.name,
+                title: '[release] ' + pkgInfo.name,
                 version: pkgInfo.version
             }
         }))
