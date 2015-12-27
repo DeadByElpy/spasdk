@@ -32,13 +32,13 @@ gulp.task('pack:develop', function () {
     log(title, 'create archive: ' +  outName.bold);
 
     return gulp.src([
-            path.join(global.paths.build, 'font', '**', '*'),
-            path.join(global.paths.build, 'img', '**', '*'),
-            path.join(global.paths.build, 'css', 'develop.*'),
-            path.join(global.paths.build, 'js', 'develop.*'),
-            path.join(global.paths.build, 'develop.html')
+            path.join(global.paths.app, 'font', '**', '*'),
+            path.join(global.paths.app, 'img', '**', '*'),
+            path.join(global.paths.app, 'css', 'develop.*'),
+            path.join(global.paths.app, 'js', 'develop.*'),
+            path.join(global.paths.app, 'develop.html')
         ],
-        {base: global.paths.build})
+        {base: global.paths.app})
         .pipe(plumber())
         .pipe(zip(outName))
         .pipe(gulp.dest(global.paths.root));
@@ -52,13 +52,13 @@ gulp.task('pack:release', function () {
     log(title, 'create archive: ' +  outName.bold);
 
     return gulp.src([
-            path.join(global.paths.build, 'font', '**', '*'),
-            path.join(global.paths.build, 'img', '**', '*'),
-            path.join(global.paths.build, 'css', 'release.*'),
-            path.join(global.paths.build, 'js', 'release.*'),
-            path.join(global.paths.build, 'index.html')
+            path.join(global.paths.app, 'font', '**', '*'),
+            path.join(global.paths.app, 'img', '**', '*'),
+            path.join(global.paths.app, 'css', 'release.*'),
+            path.join(global.paths.app, 'js', 'release.*'),
+            path.join(global.paths.app, 'index.html')
         ],
-        {base: global.paths.build})
+        {base: global.paths.app})
         .pipe(plumber())
         .pipe(zip(outName))
         .pipe(gulp.dest(global.paths.root));

@@ -24,8 +24,8 @@ global.paths = global.paths || {};
 //};
 
 global.paths.root   = global.paths.root   || process.env.PATH_ROOT   || process.cwd();
-global.paths.app    = global.paths.app    || process.env.PATH_APP    || path.join(global.paths.root, 'app');
-global.paths.build  = global.paths.build  || process.env.PATH_BUILD  || path.join(global.paths.root, 'build');
+global.paths.app    = global.paths.app    || process.env.PATH_BUILD  || path.join(global.paths.root, 'app');
+global.paths.src    = global.paths.src    || process.env.PATH_APP    || path.join(global.paths.root, 'src');
 global.paths.config = global.paths.config || process.env.PATH_CONFIG || path.join(global.paths.root, 'config');
 
 
