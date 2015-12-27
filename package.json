@@ -12,7 +12,6 @@
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
-        "code-proxy": "1.*.*",
         "del": "2.*.*",
         "gettext-parser": "1.*.*",
         "gremlins.js": "0.*.*",
@@ -32,10 +31,8 @@
         "ip": "1.*.*",
         "node-static": "0.*.*",
         "open": "0.*.*",
-        "ssh2": "0.*.*",
         "tty-colors": "0.*.*",
         "webpack-stream": "2.*.*",
-        "weinre": "2.0.0-pre-I0Z7U9OV",
         "ws": "0.*.*"
     },
     "devDependencies": {
