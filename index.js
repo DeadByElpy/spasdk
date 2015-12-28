@@ -7,7 +7,7 @@
 
 var path = require('path'),
     gulp = require('gulp'),
-    load = require('./lib/tools').load,
+    //load = require('./lib/tools').load,
     env  = process.env;
 
 
@@ -29,6 +29,7 @@ env.PATH_CFG  = env.PATH_CFG  || path.join(env.PATH_ROOT, 'config');
 require('./tasks/jade');
 require('./tasks/lint');
 require('./tasks/repl');
+require('./tasks/static');
 require('./tasks/webpack');
 
 
