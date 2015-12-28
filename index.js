@@ -5,7 +5,7 @@
 
 'use strict';
 
-var path = require('path'),
+var //path = require('path'),
     gulp = require('gulp'),
     //load = require('./lib/tools').load,
     env  = process.env;
@@ -16,10 +16,10 @@ require('tty-colors');
 
 
 // set global paths
-env.PATH_ROOT = env.PATH_ROOT || process.cwd();
-env.PATH_APP  = env.PATH_APP  || path.join(env.PATH_ROOT, 'app');
-env.PATH_SRC  = env.PATH_SRC  || path.join(env.PATH_ROOT, 'src');
-env.PATH_CFG  = env.PATH_CFG  || path.join(env.PATH_ROOT, 'config');
+env.PATH_ROOT = process.cwd();
+env.PATH_APP  = env.PATH_APP  || 'app';
+env.PATH_SRC  = env.PATH_SRC  || 'src';
+env.PATH_CFG  = env.PATH_CFG  || 'config';
 
 
 // load all tasks
@@ -30,6 +30,7 @@ require('./tasks/jade');
 require('./tasks/lint');
 require('./tasks/repl');
 require('./tasks/static');
+require('./tasks/watch');
 require('./tasks/webpack');
 
 

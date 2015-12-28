@@ -11,7 +11,7 @@ var path   = require('path'),
     gulp   = require('gulp'),
     log    = require('gulp-util').log,
     glr    = require('gulp-livereload'),
-    config = require(path.join(process.env.PATH_CFG, 'static')),
+    config = require(path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'static')),
     title  = 'static  '.inverse;
 
 
@@ -60,14 +60,14 @@ gulp.task('static', function ( done ) {
         }).resume();
     }).listen(config.port).on('listening', function eventListenerListening () {
         var ip   = require('ip').address(),
-            msg  = 'Serve static files in build directory ' + process.env.PATH_APP,
+            msg  = 'Serve application static files ' + path.join(process.env.PATH_ROOT, process.env.PATH_APP),
             hash = new Array(msg.length + 1).join('-');
 
         log(title, hash);
         log(title, msg.bold);
-        log(title, hash);
-        log(title, 'release: ' + ('http://' + ip + ':' + config.port + '/').green);
-        log(title, 'develop: ' + ('http://' + ip + ':' + config.port + '/develop.html').green);
+        //log(title, hash);
+        log(title, '\trelease: ' + ('http://' + ip + ':' + config.port + '/index.html').green);
+        log(title, '\tdevelop: ' + ('http://' + ip + ':' + config.port + '/develop.html').green);
         log(title, hash);
     });
 

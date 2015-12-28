@@ -25,15 +25,15 @@ var gulp = require('spa-gulp');
 
  Name      | Description
 -----------|-------------
- PATH_ROOT | main application directory (where `package.json` is located)
- PATH_APP  | directory with files ready to be deployed
- PATH_SRC  | directory with source files to generate development and release application files
- PATH_CFG  | directory with configuration files for tasks and application itself
+ PATH_ROOT | read-only absolute path to main application directory (where `package.json` is located)
+ PATH_APP  | relative to PATH_ROOT directory with files ready to be deployed
+ PATH_SRC  | relative to PATH_ROOT directory with source files to generate development and release application files
+ PATH_CFG  | relative to PATH_ROOT directory with configuration files for tasks and application itself
 
-These variables can be redefined in run-time:
+Some to these variables can be redefined in run-time:
 
 ```bash
-PATH_ROOT=some_other_dir gulp
+PATH_CFG=some_other_dir gulp
 ```
 
 
