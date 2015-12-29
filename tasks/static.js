@@ -8,6 +8,7 @@
 'use strict';
 
 var path  = require('path'),
+    http  = require('http'),
     gulp  = require('gulp'),
     log   = require('gulp-util').log,
     glr   = require('gulp-livereload'),
@@ -32,7 +33,7 @@ gulp.task('static', function ( done ) {
     files  = new (require('node-static').Server)(process.env.PATH_APP, {cache: false});
     msInit = +new Date();
 
-    require('http').createServer(function createServer ( request, response ) {
+    http.createServer(function createServer ( request, response ) {
         request.addListener('end', function eventListenerEnd () {
             // static files
             files.serve(request, response, function serve ( e ) {
@@ -67,7 +68,6 @@ gulp.task('static', function ( done ) {
 
         log(title, hash);
         log(title, msg.bold);
-        //log(title, hash);
         log(title, '\trelease: ' + ('http://' + ip + ':' + config.port + '/index.html').green);
         log(title, '\tdevelop: ' + ('http://' + ip + ':' + config.port + '/develop.html').green);
         log(title, hash);
