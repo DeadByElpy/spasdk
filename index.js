@@ -7,7 +7,6 @@
 
 var path = require('path'),
     gulp = require('gulp'),
-    //load = require('./lib/tools').load,
     env  = process.env;
 
 
@@ -24,9 +23,6 @@ env.PACKAGE   = path.join(process.env.PATH_ROOT, 'package.json');
 
 
 // load all tasks
-//load(path.join(__dirname, 'tasks'));
-
-//require('./tasks/img');
 require('./tasks/jade');
 require('./tasks/less');
 require('./tasks/lint');
