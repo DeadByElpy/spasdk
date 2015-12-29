@@ -209,46 +209,46 @@ function xgettext ( callback ) {
 
 // extracts translatable strings
 gulp.task('lang', function ( done ) {
-    config  = load(path.join(process.env.PATH_CFG, 'lang'));
+    config = load(path.join(process.env.PATH_CFG, 'lang'));
 
-    if ( config.active ) {
-        xgettext(function ( error, potFile ) {
-            var runCount = 0,
-                fnDone   = function ( poFile, jsonFile ) {
-                    runCount++;
-
-                    po2js(poFile, jsonFile);
-
-                    if ( runCount >= config.languages.length ) {
-                        done();
-                    }
-                };
-
-            if ( error ) {
-                return done();
-            }
-
-            config.languages.forEach(function ( langName ) {
-                var poFile   = path.join(process.env.PATH_SRC,   'lang', langName + '.po'),
-                    jsonFile = path.join(process.env.PATH_APP, 'lang', langName + '.json');
-
-                if ( fs.existsSync(poFile) ) {
-                    // merge existing pot and po files
-                    msgmerge(langName, potFile, poFile, function () {
-                        fnDone(poFile, jsonFile);
-                    });
-                } else {
-                    // create a new lang file
-                    msginit(langName, potFile, poFile, function () {
-                        fnDone(poFile, jsonFile);
-                    });
-                }
-            });
-        });
-    } else {
+    if ( !config.active ) {
         // just exit
         log(title, 'task is disabled'.grey);
 
         done();
     }
+
+    xgettext(function ( error, potFile ) {
+        var runCount = 0,
+            fnDone   = function ( poFile, jsonFile ) {
+                runCount++;
+
+                po2js(poFile, jsonFile);
+
+                if ( runCount >= config.languages.length ) {
+                    done();
+                }
+            };
+
+        if ( error ) {
+            return done();
+        }
+
+        config.languages.forEach(function ( langName ) {
+            var poFile   = path.join(process.env.PATH_SRC,   'lang', langName + '.po'),
+                jsonFile = path.join(process.env.PATH_APP, 'lang', langName + '.json');
+
+            if ( fs.existsSync(poFile) ) {
+                // merge existing pot and po files
+                msgmerge(langName, potFile, poFile, function () {
+                    fnDone(poFile, jsonFile);
+                });
+            } else {
+                // create a new lang file
+                msginit(langName, potFile, poFile, function () {
+                    fnDone(poFile, jsonFile);
+                });
+            }
+        });
+    });
 });

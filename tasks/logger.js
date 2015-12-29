@@ -18,31 +18,31 @@ var path   = require('path'),
 gulp.task('logger', function ( done ) {
     var wss;
 
-    if ( config.active ) {
-        // WebSocket server creation
-        wss = new ws.Server({port: config.port});
-        // incoming
-        wss.on('connection', function ( socket ) {
-            log(title, 'connected');
-
-            socket.on('message', function ( data ) {
-                var messages = JSON.parse(data);
-
-                if ( Array.isArray(messages) ) {
-                    messages.forEach(function ( message ) {
-                        log(title, message);
-                    });
-                }
-            });
-        });
-        // report
-        wss.on('listening', function () {
-            log(title, 'listening ...');
-        });
-    } else {
+    if ( !config.active ) {
         // just exit
         log(title, 'task is disabled'.grey);
 
         done();
     }
+
+    // WebSocket server creation
+    wss = new ws.Server({port: config.port});
+    // incoming
+    wss.on('connection', function ( socket ) {
+        log(title, 'connected');
+
+        socket.on('message', function ( data ) {
+            var messages = JSON.parse(data);
+
+            if ( Array.isArray(messages) ) {
+                messages.forEach(function ( message ) {
+                    log(title, message);
+                });
+            }
+        });
+    });
+    // report
+    wss.on('listening', function () {
+        log(title, 'listening ...');
+    });
 });
