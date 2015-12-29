@@ -7,17 +7,19 @@
 
 'use strict';
 
-var path   = require('path'),
-    gulp   = require('gulp'),
-    log    = require('gulp-util').log,
-    glr    = require('gulp-livereload'),
-    config = require(path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'static')),
-    title  = 'static  '.inverse;
+var path  = require('path'),
+    gulp  = require('gulp'),
+    log   = require('gulp-util').log,
+    glr   = require('gulp-livereload'),
+    load  = require('require-nocache')(module),
+    cfg   = path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'static'),
+    title = 'static  '.inverse;
 
 
 // start serving files
 gulp.task('static', function ( done ) {
-    var files, msInit;
+    var config = load(cfg),
+        files, msInit;
 
     if ( !config.active ) {
         // just exit

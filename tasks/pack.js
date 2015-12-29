@@ -14,12 +14,13 @@ var path    = require('path'),
     plumber = require('gulp-plumber'),
     zip     = require('gulp-zip'),
     del     = require('del'),
-    pkgInfo = require(path.join(process.env.PATH_ROOT, 'package.json')),
-    zipName = 'build.%s.%s.%s.zip',
+    load    = require('require-nocache')(module),
+    pkgFile = path.join(process.env.PATH_ROOT, 'package.json'),
+    zipName = '%s.%s.%s.zip',
     title   = 'pack    '.inverse;
 
 
-// remove all pack zip files
+// remove all generated zip files
 gulp.task('pack:clean', function () {
     return del([path.join(process.env.PATH_ROOT, util.format(zipName, '*', '*', '*'))]);
 });
@@ -27,42 +28,39 @@ gulp.task('pack:clean', function () {
 
 // create archive
 gulp.task('pack:develop', function () {
-    var outName = util.format(zipName, pkgInfo.name, pkgInfo.version, 'develop');
+    var pkgInfo = load(pkgFile),
+        outFile = util.format(zipName, pkgInfo.name, pkgInfo.version, 'develop');
 
-    log(title, 'create archive: ' +  outName.bold);
+    log(title, 'create archive: ' +  outFile.bold);
 
     return gulp
         .src([
-            path.join(process.env.PATH_APP, 'font', '**', '*'),
-            path.join(process.env.PATH_APP, 'img', '**', '*'),
-            path.join(process.env.PATH_APP, 'css', 'develop.*'),
-            path.join(process.env.PATH_APP, 'js', 'develop.*'),
-            path.join(process.env.PATH_APP, 'develop.html')
-        ],
-        {base: process.env.PATH_APP})
+            path.join(process.env.PATH_APP, '**', '*'),
+            '!' + path.join(process.env.PATH_APP, 'index.html'),
+            '!' + path.join(process.env.PATH_APP, '**', 'release.*'),
+            '!' + path.join(process.env.PATH_APP, '**', 'readme.md')
+        ], {base: process.env.PATH_APP})
         .pipe(plumber())
-        .pipe(zip(outName))
+        .pipe(zip(outFile))
         .pipe(gulp.dest(process.env.PATH_ROOT));
 });
 
 
 // create archive
 gulp.task('pack:release', function () {
-    var outName = util.format(zipName, pkgInfo.name, pkgInfo.version, 'release');
+    var pkgInfo = load(pkgFile),
+        outFile = util.format(zipName, pkgInfo.name, pkgInfo.version, 'release');
 
-    log(title, 'create archive: ' +  outName.bold);
+    log(title, 'create archive: ' +  outFile.bold);
 
     return gulp
         .src([
-            path.join(process.env.PATH_APP, 'font', '**', '*'),
-            path.join(process.env.PATH_APP, 'img', '**', '*'),
-            path.join(process.env.PATH_APP, 'css', 'release.*'),
-            path.join(process.env.PATH_APP, 'js', 'release.*'),
-            path.join(process.env.PATH_APP, 'index.html')
-        ],
-        {base: process.env.PATH_APP})
+            path.join(process.env.PATH_APP, '**', '*'),
+            '!' + path.join(process.env.PATH_APP, '**', 'develop.*'),
+            '!' + path.join(process.env.PATH_APP, '**', 'readme.md')
+        ], {base: process.env.PATH_APP})
         .pipe(plumber())
-        .pipe(zip(outName))
+        .pipe(zip(outFile))
         .pipe(gulp.dest(process.env.PATH_ROOT));
 });
 

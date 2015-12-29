@@ -26,11 +26,11 @@
         "gulp-repl": "0.*.*",
         "gulp-sourcemaps": "1.*.*",
         "gulp-util": "3.*.*",
-        "gulp-watch": "4.*.*",
         "gulp-zip": "3.*.*",
         "ip": "1.*.*",
         "node-static": "0.*.*",
         "open": "0.*.*",
+        "require-nocache": "1.*.*",
         "tty-colors": "0.*.*",
         "webpack-stream": "2.*.*",
         "ws": "0.*.*"

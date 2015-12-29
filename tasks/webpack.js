@@ -11,11 +11,15 @@ var path     = require('path'),
     util     = require('util'),
     gulp     = require('gulp'),
     plumber  = require('gulp-plumber'),
-    webpack  = require('webpack-stream'),
+    wpStream = require('webpack-stream'),
+    webpack  = require('webpack'),
     log      = require('gulp-util').log,
     del      = require('del'),
-    pkgInfo  = require(path.join(process.env.PATH_ROOT, 'package.json')),
-    wpkInfo  = require(path.join(process.env.PATH_ROOT, 'node_modules', 'webpack', 'package.json')),
+    load     = require('require-nocache')(module),
+    pkgFile  = path.join(process.env.PATH_ROOT, 'package.json'),
+    wpkFile  = path.join(process.env.PATH_ROOT, 'node_modules', 'webpack', 'package.json'),
+    entry    = path.join(process.env.PATH_SRC, 'js', 'main.js'),
+    outPath  = path.join(process.env.PATH_APP, 'js'),
     warnings = false;
 
 
@@ -92,7 +96,7 @@ function report ( err, stats ) {
 }
 
 
-// remove all js and map files
+// remove all generated js/map files
 gulp.task('webpack:clean', function () {
     return del([
         path.join(process.env.PATH_APP, 'js', 'release.*'),
@@ -106,7 +110,7 @@ gulp.task('webpack:develop', function () {
     return gulp
         .src(path.join(process.env.PATH_SRC, 'js', 'stb', 'develop', 'main.js'))
         .pipe(plumber())
-        .pipe(webpack({
+        .pipe(wpStream({
             output: {
                 filename: 'develop.js',
                 pathinfo: true,
@@ -129,23 +133,26 @@ gulp.task('webpack:develop', function () {
             cache: false,
             plugins: [
                 // fix compilation persistence
-                new webpack.webpack.optimize.OccurenceOrderPlugin(true),
+                new webpack.optimize.OccurenceOrderPlugin(true),
                 // global constants
-                new webpack.webpack.DefinePlugin({
+                new webpack.DefinePlugin({
                     DEBUG: true
                 })
             ]
         }, null, report))
-        .pipe(gulp.dest(path.join(process.env.PATH_APP, 'js')));
+        .pipe(gulp.dest(outPath));
 });
 
 
 // generate js files
 gulp.task('webpack:release', function () {
+    var pkgInfo = load(pkgFile),
+        wpkInfo = load(wpkFile);
+
     return gulp
-        .src(path.join(process.env.PATH_SRC, 'js', 'main.js'))
+        .src(entry)
         .pipe(plumber())
-        .pipe(webpack({
+        .pipe(wpStream({
             output: {
                 filename: 'release.js'
             },
@@ -156,13 +163,13 @@ gulp.task('webpack:release', function () {
             cache: false,
             plugins: [
                 // fix compilation persistence
-                new webpack.webpack.optimize.OccurenceOrderPlugin(true),
+                new webpack.optimize.OccurenceOrderPlugin(true),
                 // global constants
-                new webpack.webpack.DefinePlugin({
+                new webpack.DefinePlugin({
                     DEBUG: false
                 }),
                 // obfuscation
-                new webpack.webpack.optimize.UglifyJsPlugin({
+                new webpack.optimize.UglifyJsPlugin({
                     // this option prevents name changing
                     // use in case of strange errors
                     // mangle: false,
@@ -180,13 +187,13 @@ gulp.task('webpack:release', function () {
                     }
                 }),
                 // add comment to the top of app.js
-                new webpack.webpack.BannerPlugin(util.format(
+                new webpack.BannerPlugin(util.format(
                     '%s: v%s (webpack: v%s)',
                     pkgInfo.name, pkgInfo.version, wpkInfo.version
                 ))
             ]
         }, null, report))
-        .pipe(gulp.dest(path.join(process.env.PATH_APP, 'js')));
+        .pipe(gulp.dest(outPath));
 });
 
 

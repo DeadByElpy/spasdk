@@ -16,9 +16,10 @@ var fs      = require('fs'),
     gulp    = require('gulp'),
     log     = require('gulp-util').log,
     exec    = require('child_process').exec,
-    config  = require(path.join(process.env.PATH_CFG, 'lang')),
-    pkgInfo = require(path.join(process.env.PATH_ROOT, 'package.json')),
-    title   = 'lang    '.inverse;
+    load    = require('require-nocache')(module),
+    pkgFile = path.join(process.env.PATH_ROOT, 'package.json'),
+    title   = 'lang    '.inverse,
+    config;
 
 
 function po2js ( poFile, jsonFile ) {
@@ -149,6 +150,7 @@ function msgmerge ( langName, potFile, poFile, callback ) {
 function xgettext ( callback ) {
     var srcFile = path.join(process.env.PATH_APP, 'js', 'develop.js'),
         dstFile = path.join(process.env.PATH_SRC, 'lang', 'messages.pot'),
+        pkgInfo = load(pkgFile),
         title   = 'xgettext'.inverse,
         params  = [
             'xgettext',
@@ -207,6 +209,8 @@ function xgettext ( callback ) {
 
 // extracts translatable strings
 gulp.task('lang', function ( done ) {
+    config  = load(path.join(process.env.PATH_CFG, 'lang'));
+
     if ( config.active ) {
         xgettext(function ( error, potFile ) {
             var runCount = 0,

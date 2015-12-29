@@ -13,11 +13,12 @@ var path    = require('path'),
     plumber = require('gulp-plumber'),
     rename  = require('gulp-rename'),
     del     = require('del'),
-    pkgInfo = require(path.join(process.env.PATH_ROOT, 'package.json')),
+    load    = require('require-nocache')(module),
+    pkgFile = path.join(process.env.PATH_ROOT, 'package.json'),
     entry   = path.join(process.env.PATH_SRC, 'jade', 'main.jade');
 
 
-// remove all html files
+// remove all generated html files
 gulp.task('jade:clean', function () {
     return del([
         path.join(process.env.PATH_APP, 'index.html'),
@@ -28,6 +29,8 @@ gulp.task('jade:clean', function () {
 
 // generate html files
 gulp.task('jade:develop', function () {
+    var pkgInfo = load(pkgFile);
+
     return gulp
         .src(entry)
         .pipe(plumber())
@@ -46,6 +49,8 @@ gulp.task('jade:develop', function () {
 
 // generate html files
 gulp.task('jade:release', function () {
+    var pkgInfo = load(pkgFile);
+
     return gulp
         .src(entry)
         .pipe(plumber())

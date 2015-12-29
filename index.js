@@ -5,7 +5,7 @@
 
 'use strict';
 
-var //path = require('path'),
+var path = require('path'),
     gulp = require('gulp'),
     //load = require('./lib/tools').load,
     env  = process.env;
@@ -17,9 +17,13 @@ require('tty-colors');
 
 // set global paths
 env.PATH_ROOT = process.cwd();
-env.PATH_APP  = env.PATH_APP  || 'app';
-env.PATH_SRC  = env.PATH_SRC  || 'src';
-env.PATH_CFG  = env.PATH_CFG  || 'config';
+env.PATH_APP  = env.PATH_APP || 'app';
+env.PATH_SRC  = env.PATH_SRC || 'src';
+env.PATH_CFG  = env.PATH_CFG || 'config';
+env.PACKAGE   = path.join(process.env.PATH_ROOT, 'package.json');
+
+
+global.packageFilename = path.join(process.env.PATH_ROOT, 'package.json');
 
 
 // load all tasks
@@ -27,11 +31,28 @@ env.PATH_CFG  = env.PATH_CFG  || 'config';
 
 //require('./tasks/img');
 require('./tasks/jade');
+require('./tasks/less');
 require('./tasks/lint');
+require('./tasks/open');
+require('./tasks/pack');
 require('./tasks/repl');
 require('./tasks/static');
 require('./tasks/watch');
 require('./tasks/webpack');
+
+
+// rebuild develop and release
+gulp.task('build:develop', ['jade:develop', 'less:develop', 'webpack:develop']);
+gulp.task('build:release', ['jade:release', 'less:release', 'webpack:release']);
+
+// full rebuild
+gulp.task('build', ['lint', 'build:develop', 'build:release']);
+
+// start all services
+gulp.task('serve', ['static', 'watch', 'repl']);
+
+// entry point
+gulp.task('default', ['build', 'serve']);
 
 
 // public
