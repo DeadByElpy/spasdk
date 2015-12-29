@@ -16,7 +16,6 @@ var path     = require('path'),
     log      = require('gulp-util').log,
     del      = require('del'),
     load     = require('require-nocache')(module),
-    pkgFile  = path.join(process.env.PATH_ROOT, 'package.json'),
     wpkFile  = path.join(process.env.PATH_ROOT, 'node_modules', 'webpack', 'package.json'),
     entry    = path.join(process.env.PATH_SRC, 'js', 'main.js'),
     outPath  = path.join(process.env.PATH_APP, 'js'),
@@ -146,7 +145,7 @@ gulp.task('webpack:develop', function () {
 
 // generate js files
 gulp.task('webpack:release', function () {
-    var pkgInfo = load(pkgFile),
+    var pkgInfo = load(process.env.PACKAGE),
         wpkInfo = load(wpkFile);
 
     return gulp

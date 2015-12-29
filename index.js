@@ -15,15 +15,12 @@ var path = require('path'),
 require('tty-colors');
 
 
-// set global paths
+// set global variables
 env.PATH_ROOT = process.cwd();
 env.PATH_APP  = env.PATH_APP || 'app';
 env.PATH_SRC  = env.PATH_SRC || 'src';
 env.PATH_CFG  = env.PATH_CFG || 'config';
 env.PACKAGE   = path.join(process.env.PATH_ROOT, 'package.json');
-
-
-global.packageFilename = path.join(process.env.PATH_ROOT, 'package.json');
 
 
 // load all tasks

@@ -29,6 +29,7 @@ var gulp = require('spa-gulp');
  PATH_APP  | relative to PATH_ROOT directory with files ready to be deployed
  PATH_SRC  | relative to PATH_ROOT directory with source files to generate development and release application files
  PATH_CFG  | relative to PATH_ROOT directory with configuration files for tasks and application itself
+ PACKAGE   | read-only absolute path to the application `package.json` file
 
 Some to these variables can be redefined in run-time:
 

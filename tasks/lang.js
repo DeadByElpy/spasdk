@@ -11,14 +11,13 @@
 
 'use strict';
 
-var fs      = require('fs'),
-    path    = require('path'),
-    gulp    = require('gulp'),
-    log     = require('gulp-util').log,
-    exec    = require('child_process').exec,
-    load    = require('require-nocache')(module),
-    pkgFile = path.join(process.env.PATH_ROOT, 'package.json'),
-    title   = 'lang    '.inverse,
+var fs    = require('fs'),
+    path  = require('path'),
+    gulp  = require('gulp'),
+    log   = require('gulp-util').log,
+    exec  = require('child_process').exec,
+    load  = require('require-nocache')(module),
+    title = 'lang    '.inverse,
     config;
 
 
@@ -150,7 +149,7 @@ function msgmerge ( langName, potFile, poFile, callback ) {
 function xgettext ( callback ) {
     var srcFile = path.join(process.env.PATH_APP, 'js', 'develop.js'),
         dstFile = path.join(process.env.PATH_SRC, 'lang', 'messages.pot'),
-        pkgInfo = load(pkgFile),
+        pkgInfo = load(process.env.PACKAGE),
         title   = 'xgettext'.inverse,
         params  = [
             'xgettext',

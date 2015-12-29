@@ -14,7 +14,6 @@ var path    = require('path'),
     rename  = require('gulp-rename'),
     del     = require('del'),
     load    = require('require-nocache')(module),
-    pkgFile = path.join(process.env.PATH_ROOT, 'package.json'),
     entry   = path.join(process.env.PATH_SRC, 'jade', 'main.jade');
 
 
@@ -29,7 +28,7 @@ gulp.task('jade:clean', function () {
 
 // generate html files
 gulp.task('jade:develop', function () {
-    var pkgInfo = load(pkgFile);
+    var pkgInfo = load(process.env.PACKAGE);
 
     return gulp
         .src(entry)
@@ -49,7 +48,7 @@ gulp.task('jade:develop', function () {
 
 // generate html files
 gulp.task('jade:release', function () {
-    var pkgInfo = load(pkgFile);
+    var pkgInfo = load(process.env.PACKAGE);
 
     return gulp
         .src(entry)

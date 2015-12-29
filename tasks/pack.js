@@ -15,7 +15,6 @@ var path    = require('path'),
     zip     = require('gulp-zip'),
     del     = require('del'),
     load    = require('require-nocache')(module),
-    pkgFile = path.join(process.env.PATH_ROOT, 'package.json'),
     zipName = '%s.%s.%s.zip',
     title   = 'pack    '.inverse;
 
@@ -28,7 +27,7 @@ gulp.task('pack:clean', function () {
 
 // create archive
 gulp.task('pack:develop', function () {
-    var pkgInfo = load(pkgFile),
+    var pkgInfo = load(process.env.PACKAGE),
         outFile = util.format(zipName, pkgInfo.name, pkgInfo.version, 'develop');
 
     log(title, 'create archive: ' +  outFile.bold);
@@ -48,7 +47,7 @@ gulp.task('pack:develop', function () {
 
 // create archive
 gulp.task('pack:release', function () {
-    var pkgInfo = load(pkgFile),
+    var pkgInfo = load(process.env.PACKAGE),
         outFile = util.format(zipName, pkgInfo.name, pkgInfo.version, 'release');
 
     log(title, 'create archive: ' +  outFile.bold);
