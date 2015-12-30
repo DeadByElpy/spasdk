@@ -14,7 +14,7 @@ var path       = require('path'),
     rename     = require('gulp-rename'),
     del        = require('del'),
     sourceMaps = require('gulp-sourcemaps'),
-    minifyCSS  = require('gulp-minify-css');
+    cssNano    = require('gulp-cssnano');
 
 
 /**
@@ -107,7 +107,7 @@ var path       = require('path'),
 //            //paths: [ path.join(__dirname, 'less', 'includes') ]
 //        }))
 //        .pipe(rename('release.' + resolution + '.css'))
-//        .pipe(minifyCSS({rebase: false}))
+//        .pipe(cssNano({rebase: false}))
 //        .pipe(gulp.dest(path.join(process.env.PATH_APP, 'css')));
 //}
 
@@ -175,7 +175,7 @@ gulp.task('less:release', function () {
             //paths: [ path.join(__dirname, 'less', 'includes') ]
         }))
         .pipe(rename('release.css'))
-        .pipe(minifyCSS({rebase: false}))
+        .pipe(cssNano())
         .pipe(gulp.dest(path.join(process.env.PATH_APP, 'css')));
 });
 
