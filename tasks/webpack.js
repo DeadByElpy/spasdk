@@ -107,7 +107,7 @@ gulp.task('webpack:clean', function () {
 // generate js files
 gulp.task('webpack:develop', function () {
     return gulp
-        .src(path.join(process.env.PATH_SRC, 'js', 'stb', 'develop', 'main.js'))
+        .src(path.join('node_modules', 'spa-develop', 'index.js'))
         .pipe(plumber())
         .pipe(wpStream({
             output: {
@@ -116,7 +116,11 @@ gulp.task('webpack:develop', function () {
                 sourcePrefix: '\t\t\t'
             },
             resolve: {
-                //root: path.join(process.env.PATH_SRC, 'js'),
+                root: [
+                    // to use both app and spa-develop sources
+                    path.join(process.env.PATH_ROOT, process.env.PATH_SRC),
+                    path.join(process.env.PATH_ROOT, 'node_modules', 'spa-develop')
+                ],
                 extensions:['', '.js']
             },
             devtool: 'source-map',
