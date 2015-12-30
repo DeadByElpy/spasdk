@@ -107,7 +107,7 @@ gulp.task('webpack:clean', function () {
 // generate js files
 gulp.task('webpack:develop', function () {
     return gulp
-        .src(path.join('node_modules', global.env.TARGET + '-develop', 'index.js'))
+        .src(path.join('node_modules', process.env.TARGET + '-develop', 'index.js'))
         .pipe(plumber())
         .pipe(wpStream({
             output: {
@@ -119,7 +119,7 @@ gulp.task('webpack:develop', function () {
                 root: [
                     // to use both app and *-develop sources
                     path.join(process.env.PATH_ROOT, process.env.PATH_SRC),
-                    path.join(process.env.PATH_ROOT, 'node_modules', global.env.TARGET + '-develop')
+                    path.join(process.env.PATH_ROOT, 'node_modules', process.env.TARGET + '-develop')
                 ],
                 extensions:['', '.js']
             },
