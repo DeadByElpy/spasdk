@@ -14,7 +14,6 @@
     "dependencies": {
         "del": "2.*.*",
         "gettext-parser": "1.*.*",
-        "gremlins.js": "0.*.*",
         "gulp": "3.*.*",
         "gulp-cssnano": "2.*.*",
         "gulp-eslint": "1.*.*",
@@ -32,8 +31,7 @@
         "open": "0.*.*",
         "require-nocache": "1.*.*",
         "tty-colors": "0.*.*",
-        "webpack-stream": "2.*.*",
-        "ws": "0.*.*"
+        "webpack-stream": "2.*.*"
     },
     "keywords": [
         "spa",
