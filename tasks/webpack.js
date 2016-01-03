@@ -64,7 +64,7 @@ function report ( err, stats ) {
                 module.size + '\t' +
                 (module.errors > 0 ? module.errors.toString().red : '0') + '\t' +
                 (module.warnings > 0 ? module.warnings.toString().yellow : '0') + '\t' +
-                (module.name.indexOf('./') === 0 ? module.name.replace(/\//g, '/'.grey) : module.name.grey)
+                (module.name.indexOf('./~/') === 0 ? module.name.replace(/\//g, '/'.grey) : module.name.bold.replace(/\//g, '/'.grey))
             );
         });
 
