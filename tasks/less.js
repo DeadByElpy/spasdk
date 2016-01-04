@@ -147,13 +147,17 @@ gulp.task('less:develop', function () {
     // additional vars
     vars.mode = 'develop';
 
-    return gulp.src(path.join(process.env.PATH_SRC, 'less', 'main.less'))
+    //return gulp.src(path.join(process.env.PATH_SRC, 'less', 'main.less'))
+    return gulp.src(path.join('node_modules', 'spa-develop', 'less', 'main.less'))
         .pipe(plumber())
         .pipe(sourceMaps.init())
         .pipe(less({
             ieCompat: false,
-            globalVars: vars
-            //paths: [ path.join(__dirname, 'less', 'includes') ]
+            globalVars: vars,
+            paths: [
+                path.join(process.env.PATH_ROOT, process.env.PATH_SRC)
+                //path.join(__dirname, 'less', 'includes')
+            ]
         }))
         .pipe(rename('develop.css'))
         .pipe(sourceMaps.write('./'))
