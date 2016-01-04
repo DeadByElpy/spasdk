@@ -167,12 +167,16 @@ gulp.task('less:release', function () {
     // additional vars
     vars.mode = 'release';
 
-    return gulp.src(path.join(process.env.PATH_SRC, 'less', 'main.less'))
+    //return gulp.src(path.join(process.env.PATH_SRC, 'less', 'main.less'))
+    return gulp.src(path.join('node_modules', 'spa-app', 'less', 'main.less'))
         .pipe(plumber())
         .pipe(less({
             ieCompat: false,
-            globalVars: vars
-            //paths: [ path.join(__dirname, 'less', 'includes') ]
+            globalVars: vars,
+            paths: [
+                path.join(process.env.PATH_ROOT, process.env.PATH_SRC)
+                //path.join(__dirname, 'less', 'includes')
+            ]
         }))
         .pipe(rename('release.css'))
         .pipe(cssNano())
