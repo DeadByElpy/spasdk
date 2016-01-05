@@ -155,7 +155,8 @@ gulp.task('less:develop', function () {
             ieCompat: false,
             globalVars: vars,
             paths: [
-                path.join(process.env.PATH_ROOT, process.env.PATH_SRC)
+                path.join(process.env.PATH_ROOT, process.env.PATH_SRC),
+                path.join(process.env.PATH_ROOT, 'node_modules')
                 //path.join(__dirname, 'less', 'includes')
             ]
         }))
@@ -178,7 +179,8 @@ gulp.task('less:release', function () {
             ieCompat: false,
             globalVars: vars,
             paths: [
-                path.join(process.env.PATH_ROOT, process.env.PATH_SRC)
+                path.join(process.env.PATH_ROOT, process.env.PATH_SRC),
+                path.join(process.env.PATH_ROOT, 'node_modules')
                 //path.join(__dirname, 'less', 'includes')
             ]
         }))
