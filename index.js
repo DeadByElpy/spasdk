@@ -30,6 +30,7 @@ require('./tasks/lint');
 require('./tasks/open');
 require('./tasks/pack');
 require('./tasks/repl');
+require('./tasks/sass');
 require('./tasks/static');
 require('./tasks/watch');
 require('./tasks/webpack');

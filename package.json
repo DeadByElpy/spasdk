@@ -28,6 +28,7 @@
         "gulp-zip": "3.*.*",
         "ip": "1.*.*",
         "node-static": "0.*.*",
+        "node-sass": "3.*.*",
         "open": "0.*.*",
         "require-nocache": "1.*.*",
         "tty-colors": "0.*.*",
