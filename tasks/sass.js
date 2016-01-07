@@ -146,3 +146,9 @@ gulp.task('sass:scan', function () {
 
 // generate all css files
 gulp.task('sass', ['sass:develop', 'sass:release']);
+
+
+// public
+module.exports = {
+    compile: compile
+};
