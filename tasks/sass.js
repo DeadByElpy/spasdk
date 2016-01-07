@@ -18,7 +18,7 @@ var fs   = require('fs'),
     cfg  = path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'sass');
 
 
-function render ( config, mode, done ) {
+function compile ( config, mode, done ) {
     var options = config[mode];
 
     // intended location of the output file
@@ -100,7 +100,7 @@ gulp.task('sass:develop', function ( done ) {
 
     config.develop.data = data.join('\n');
 
-    render(config, 'develop', done);
+    compile(config, 'develop', done);
 });
 
 
@@ -116,7 +116,7 @@ gulp.task('sass:release', function ( done ) {
 
     config.release.data = data.join('\n');
 
-    render(config, 'release', done);
+    compile(config, 'release', done);
 });
 
 
