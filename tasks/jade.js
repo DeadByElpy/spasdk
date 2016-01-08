@@ -7,64 +7,119 @@
 
 'use strict';
 
-var path    = require('path'),
+var fs      = require('fs'),
+    path    = require('path'),
+    util    = require('util'),
     gulp    = require('gulp'),
-    jade    = require('gulp-jade'),
-    plumber = require('gulp-plumber'),
-    rename  = require('gulp-rename'),
+    log     = require('gulp-util').log,
+    jade    = require('jade'),
+    //jade    = require('gulp-jade'),
+    //plumber = require('gulp-plumber'),
+    //rename  = require('gulp-rename'),
     del     = require('del'),
-    load    = require('require-nocache')(module),
-    entry   = path.join(process.env.PATH_SRC, 'jade', 'main.jade');
+    //load    = require('require-nocache')(module),
+    load    = require('../lib/load'),
+    config  = load('jade'),
+    pkgInfo = require(process.env.PACKAGE),
+    entry   = path.join(process.env.PATH_SRC, 'jade', 'main.jade'),
+    cfg     = path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'jade'),
+    outFiles = [],
+    profileTasks = [];
+
+
+//function prepare ( config ) {
+//    // rework fields
+//    return {
+//        filename: path.join(process.env.PATH_ROOT, process.env.PATH_APP, config.srcPath, config.srcFile),
+//        pretty: config.indentString
+//    };
+//}
+
+
+function compile ( config, done ) {
+    var srcFile = path.join(process.env.PATH_ROOT, process.env.PATH_SRC, config.srcPath, config.srcFile),
+        outFile = path.join(process.env.PATH_ROOT, process.env.PATH_APP, config.outPath, config.outFile),
+        render  = null;
+
+    try {
+        // prepare function
+        render = jade.compileFile(srcFile, {
+            filename: srcFile,
+            pretty: config.indentString
+        });
+
+        // save generated result
+        fs.writeFileSync(outFile, render(config.variables));
+    } catch ( error ) {
+        // console log + notification popup
+        require('../lib/error')('jade', error.message);
+    }
+
+    done();
+}
+
+
+// do not create tasks
+if ( !config.active ) {
+    return;
+}
+
+
+// only derived profiles are necessary
+delete config.profiles.default;
+
+
+// generate tasks by config profiles
+Object.keys(config.profiles).forEach(function ( profileName ) {
+    var profile  = config.profiles[profileName],
+        taskName = 'jade:' + profileName;
+
+    // extend vars
+    profile.variables.name        = profile.variables.name        || pkgInfo.name;
+    profile.variables.version     = profile.variables.version     || pkgInfo.version;
+    profile.variables.description = profile.variables.description || pkgInfo.description;
+    profile.variables.author      = profile.variables.author      || pkgInfo.author;
+    profile.variables.license     = profile.variables.license     || pkgInfo.license;
+
+    // files to delete in clear task
+    outFiles.push(path.join(process.env.PATH_APP, profile.outPath, profile.outFile));
+
+    gulp.task(taskName, function ( done ) {
+        compile(profile, done);
+    });
+
+    // fill group task list
+    profileTasks.push(taskName);
+});
+
+
+// output current config
+gulp.task('jade:config', function () {
+    console.log(util.inspect(config, {depth: 5, colors: true}));
+});
 
 
 // remove all generated html files
 gulp.task('jade:clean', function () {
-    return del([
-        path.join(process.env.PATH_APP, 'index.html'),
-        path.join(process.env.PATH_APP, 'develop.html')
-    ]);
+    del.sync(outFiles);
 });
 
 
-// generate html files
-gulp.task('jade:develop', function () {
-    var pkgInfo = load(process.env.PACKAGE);
-
-    return gulp
-        .src(entry)
-        .pipe(plumber())
-        .pipe(jade({
-            pretty: '\t',
-            locals: {
-                develop: true,
-                title: '[develop] ' + pkgInfo.name,
-                version: pkgInfo.version
-            }
-        }))
-        .pipe(rename('develop.html'))
-        .pipe(gulp.dest(process.env.PATH_APP));
-});
+// run all profiles tasks
+gulp.task('jade', profileTasks);
 
 
-// generate html files
-gulp.task('jade:release', function () {
-    var pkgInfo = load(process.env.PACKAGE);
-
-    return gulp
-        .src(entry)
-        .pipe(plumber())
-        .pipe(jade({
-            pretty: false,
-            locals: {
-                develop: false,
-                title: '[release] ' + pkgInfo.name,
-                version: pkgInfo.version
-            }
-        }))
-        .pipe(rename('index.html'))
-        .pipe(gulp.dest(process.env.PATH_APP));
-});
+/*gulp.task('jade:watch', function ( done ) {
+    // jade
+    gulp.watch([
+        'package.json',
+        path.join(process.env.PATH_SRC, 'jade', '**', '*.jade')
+    ], ['jade:develop']);
+});*/
 
 
-// generate all html files
-gulp.task('jade', ['jade:develop', 'jade:release']);
+// public
+module.exports = {
+    //prepare: prepare,
+    compile: compile
+};
