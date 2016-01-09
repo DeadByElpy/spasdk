@@ -8,25 +8,13 @@
 
 'use strict';
 
-var //fs      = require('fs'),
-    path     = require('path'),
+var path     = require('path'),
     extend   = require('extend'),
     notifier = require('node-notifier'),
-    util     = require('gulp-util')
-    //gulp    = require('gulp'),
-    //jade    = require('jade'),
-    //jade    = require('gulp-jade'),
-    //plumber = require('gulp-plumber'),
-    //rename  = require('gulp-rename'),
-    //del     = require('del'),
-    //load    = require('require-nocache')(module),
-    //entry   = path.join(process.env.PATH_SRC, 'jade', 'main.jade'),
-    //cfg     = path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'jade')
-    ;
+    util     = require('gulp-util');
 
 
 function load ( appConfig, pkgConfig ) {
-    //console.log(appConfig, pkgConfig);
     var config = {};
 
     try {
@@ -39,8 +27,6 @@ function load ( appConfig, pkgConfig ) {
         }
     }
 
-
-
     // sanitize
     config.profiles = config.profiles || {};
     config.profiles.default = config.profiles.default || {};
@@ -49,46 +35,43 @@ function load ( appConfig, pkgConfig ) {
         if ( name !== 'default' ) {
             config.profiles[name] = extend(true, {}, config.profiles.default, config.profiles[name]);
         }
-
-
-    //    var profile = config.profiles[name];
-	//
-    //    if ( name !== 'default' ) {
-    //        Object.keys(defaults).forEach(function ( name ) {
-    //            profile[name]
-    //            defaults[name]
-    //        });
-    //    }
     });
-
-    //console.log(config);
 
     return config;
 }
 
 
+function pad ( str ) {
+    return str + (new Array(Math.max(8 - str.length + 1, 0))).join(' ');
+}
+
+
 function log ( name, message ) {
-    var title = name + (new Array(Math.max(8 - name.length + 1, 0))).join(' ');
+    var title = pad(name).inverse;
+
+    message = Array.isArray(message) ? message : message.split('\n');
 
     // make nice console output
-    message.split('\n').forEach(function ( line ) {
+    message.forEach(function ( line ) {
         util.log(title, line.reset);
     });
 }
 
 
 function error ( name, message ) {
-    var title = name + (new Array(Math.max(8 - name.length + 1, 0))).join(' ');
+    var title = pad(name).bgRed;
+
+    message = Array.isArray(message) ? message : message.split('\n');
 
     // make nice console output
-    message.split('\n').forEach(function ( line ) {
-        util.log(title.bgRed, line.reset);
+    message.forEach(function ( line ) {
+        util.log(title, line.reset);
     });
 
     // popup
     notifier.notify({
         icon: path.join(__dirname, 'img', 'error.png'),
-        title: name + ' task',
+        title: name,
         message: message
     });
 }
