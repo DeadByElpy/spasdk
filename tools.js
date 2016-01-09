@@ -9,8 +9,10 @@
 'use strict';
 
 var //fs      = require('fs'),
-    path   = require('path'),
-    extend = require('extend')
+    path     = require('path'),
+    extend   = require('extend'),
+    notifier = require('node-notifier'),
+    util     = require('gulp-util')
     //gulp    = require('gulp'),
     //jade    = require('jade'),
     //jade    = require('gulp-jade'),
@@ -65,7 +67,36 @@ function load ( appConfig, pkgConfig ) {
 }
 
 
+function log ( name, message ) {
+    var title = name + (new Array(Math.max(8 - name.length + 1, 0))).join(' ');
+
+    // make nice console output
+    message.split('\n').forEach(function ( line ) {
+        util.log(title, line.reset);
+    });
+}
+
+
+function error ( name, message ) {
+    var title = name + (new Array(Math.max(8 - name.length + 1, 0))).join(' ');
+
+    // make nice console output
+    message.split('\n').forEach(function ( line ) {
+        util.log(title.bgRed, line.reset);
+    });
+
+    // popup
+    notifier.notify({
+        icon: path.join(__dirname, 'img', 'error.png'),
+        title: name + ' task',
+        message: message
+    });
+}
+
+
 // public
 module.exports = {
-    load: load
+    log:   log,
+    error: error,
+    load:  load
 };
