@@ -7,7 +7,8 @@
 
 var path = require('path'),
     gulp = require('gulp'),
-    env  = process.env;
+    env  = process.env,
+    pkgInfo;
 
 
 // enable colors in console
@@ -23,7 +24,17 @@ env.PACKAGE   = path.join(process.env.PATH_ROOT, 'package.json');
 env.TARGET    = 'spa';
 
 
-// load all tasks
+pkgInfo = require(env.PACKAGE);
+
+Object.keys(pkgInfo.dependencies).forEach(function ( name ) {
+    // get only gulp task packages
+    if ( name.indexOf('spa-gulp-') === 0 ) {
+        require(name);
+    }
+});
+
+
+/*// load all tasks
 require('./tasks/jade');
 require('./tasks/less');
 require('./tasks/lint');
@@ -47,7 +58,7 @@ gulp.task('build', ['lint', 'build:develop', 'build:release']);
 gulp.task('serve', ['static', 'watch', 'repl']);
 
 // entry point
-gulp.task('default', ['build', 'serve']);
+gulp.task('default', ['build', 'serve']);*/
 
 
 // public
