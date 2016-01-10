@@ -13,9 +13,13 @@ var fs   = require('fs'),
     gulp = require('gulp'),
     log  = require('gulp-util').log,
     sass = require('node-sass'),
-    load = require('require-nocache')(module),
+    //load = require('require-nocache')(module),
     del  = require('del'),
-    cfg  = path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'sass');
+    load    = require('../lib/load'),
+    config  = load('sass'),
+    cfg  = path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'sass'),
+    outFiles = [],
+    profileTasks = [];
 
 
 function compile ( config, mode, done ) {
@@ -75,16 +79,14 @@ function compile ( config, mode, done ) {
 }
 
 
-// remove all generated css/map files
-gulp.task('sass:clean', function () {
-    var config = load(cfg);
+// do not create tasks
+if ( !config.active ) {
+    return;
+}
 
-    return del([
-        path.join(process.env.PATH_APP, config.path, config.develop.outFile),
-        path.join(process.env.PATH_APP, config.path, config.develop.sourceMap),
-        path.join(process.env.PATH_APP, config.path, config.release.outFile)
-    ]);
-});
+
+// only derived profiles are necessary
+delete config.profiles.default;
 
 
 gulp.task('sass:develop', function ( done ) {
@@ -144,8 +146,20 @@ gulp.task('sass:scan', function () {
 });*/
 
 
-// generate all css files
-gulp.task('sass', ['sass:develop', 'sass:release']);
+// output current config
+gulp.task('sass:config', function () {
+    console.log(util.inspect(config, {depth: 5, colors: true}));
+});
+
+
+// remove all generated html files
+gulp.task('sass:clean', function () {
+    del.sync(outFiles);
+});
+
+
+// run all profiles tasks
+gulp.task('sass', profileTasks);
 
 
 // public
