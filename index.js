@@ -5,9 +5,10 @@
 
 'use strict';
 
-var path = require('path'),
-    gulp = require('gulp'),
-    env  = process.env,
+var path  = require('path'),
+    gulp  = require('gulp'),
+    tools = require('./tools'),
+    env   = process.env,
     pkgInfo;
 
 
@@ -23,6 +24,11 @@ env.PATH_CFG  = env.PATH_CFG || 'config';
 env.PACKAGE   = path.join(process.env.PATH_ROOT, 'package.json');
 env.TARGET    = 'spa';
 
+global.tasks = {
+    build: [],
+    watch: [],
+    clean: []
+};
 
 pkgInfo = require(env.PACKAGE);
 
@@ -32,6 +38,11 @@ Object.keys(pkgInfo.dependencies).forEach(function ( name ) {
         require(name);
     }
 });
+
+//gulp.task('build', global.tasks.build);
+//gulp.task('clean', global.tasks.clean);
+
+tools.registerTasks(global.tasks);
 
 
 /*// load all tasks
