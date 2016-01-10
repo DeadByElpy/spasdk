@@ -9,6 +9,7 @@
 'use strict';
 
 var path     = require('path'),
+    gulp     = require('gulp'),
     extend   = require('extend'),
     notifier = require('node-notifier'),
     util     = require('gulp-util');
@@ -77,9 +78,29 @@ function error ( name, message ) {
 }
 
 
+function registerTasks ( tree ) {
+    //console.log(tree);
+    //return;
+
+    //var topKeys = Object.keys(tree);
+
+    Object.keys(tree).forEach(function ( topName ) {
+        //var subKeys = Object.keys(tree[topName]);
+
+        //console.log(topName, tree[topName]);
+        gulp.task(topName, tree[topName]);
+
+        //subKeys.forEach(function ( subName ) {
+        //    console.log(topName, subName, tree[topName][subName]);
+        //});
+    });
+}
+
+
 // public
 module.exports = {
     log:   log,
     error: error,
-    load:  load
+    load:  load,
+    registerTasks: registerTasks
 };
