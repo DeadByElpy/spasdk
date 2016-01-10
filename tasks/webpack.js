@@ -95,11 +95,24 @@ function report ( err, stats ) {
 }
 
 
+function compile ( config, mode, done ) {
+    var options = config[mode];
+
+    webpack(options, function ( error, stats ) {
+        console.log(error);
+        console.log(stats);
+
+        done();
+    });
+}
+
+
 // remove all generated js/map files
 gulp.task('webpack:clean', function () {
     return del([
-        path.join(process.env.PATH_APP, 'js', 'release.*'),
-        path.join(process.env.PATH_APP, 'js', 'develop.*')
+        path.join(process.env.PATH_APP, 'js', 'release.js'),
+        path.join(process.env.PATH_APP, 'js', 'develop.js'),
+        path.join(process.env.PATH_APP, 'js', 'develop.map')
     ]);
 });
 
@@ -202,3 +215,9 @@ gulp.task('webpack:release', function () {
 
 // generate all js files
 gulp.task('webpack', ['webpack:develop', 'webpack:release']);
+
+
+// public
+module.exports = {
+    compile: compile
+};
