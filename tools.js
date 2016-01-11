@@ -15,30 +15,39 @@ var path     = require('path'),
     util     = require('gulp-util');
 
 
-function load ( appConfig, pkgConfig ) {
-    var config = {};
+function load ( fileName, gulpName ) {
+    var packageConfig = require(fileName),
+        projectConfig = {};
 
     try {
-        config = require(appConfig);
-    } catch ( error ) {
-        try {
-            config = require(pkgConfig);
-        } catch ( error ) {
-            console.log(error);
-        }
-    }
+        // this config file is not mandatory
+        projectConfig = require(path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'gulp'));
+    } catch ( error ) {}
 
     // sanitize
-    config.profiles = config.profiles || {};
-    config.profiles.default = config.profiles.default || {};
+    projectConfig[gulpName] = projectConfig[gulpName] || {};
+    projectConfig[gulpName].profiles = projectConfig[gulpName].profiles || {};
 
-    Object.keys(config.profiles).forEach(function ( name ) {
+    // merge user general config with the package config
+    extend(true, packageConfig, projectConfig[gulpName] || {});
+
+    // merge all profiles with the default one
+    Object.keys(packageConfig.profiles).forEach(function ( name ) {
+        // do not allow to change default profile
         if ( name !== 'default' ) {
-            config.profiles[name] = extend(true, {}, config.profiles.default, config.profiles[name]);
+            // profile name is marked for deletion with null/false
+            if ( name in projectConfig[gulpName].profiles && !projectConfig[gulpName].profiles[name] ) {
+                delete packageConfig.profiles[name];
+            } else {
+                // merge this profile with the default one
+                packageConfig.profiles[name] = extend(
+                    true, {}, packageConfig.profiles.default, packageConfig.profiles[name]
+                );
+            }
         }
     });
 
-    return config;
+    return packageConfig;
 }
 
 
