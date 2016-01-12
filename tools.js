@@ -68,6 +68,15 @@ function log ( name, message ) {
 }
 
 
+function popup ( config ) {
+    if ( config.icon ) {
+        config.icon = path.join(__dirname, 'img', config.icon + '.png');
+    }
+
+    notifier.notify(config);
+}
+
+
 function error ( name, message ) {
     var title = pad(name).bgRed;
 
@@ -76,13 +85,6 @@ function error ( name, message ) {
     // make nice console output
     message.forEach(function ( line ) {
         util.log(title, line.reset);
-    });
-
-    // popup
-    notifier.notify({
-        icon: path.join(__dirname, 'img', 'error.png'),
-        title: name,
-        message: message
     });
 }
 
@@ -110,6 +112,7 @@ function registerTasks ( tree ) {
 module.exports = {
     log:   log,
     error: error,
+    popup: popup,
     load:  load,
     registerTasks: registerTasks
 };
