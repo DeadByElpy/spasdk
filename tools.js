@@ -16,38 +16,43 @@ var path     = require('path'),
 
 
 function load ( fileName, gulpName ) {
-    var packageConfig = require(fileName),
-        projectConfig = {};
+    var baseConfig = require(fileName) || {},
+        userConfig = {},
+        result     = {};
 
     try {
         // this config file is not mandatory
-        projectConfig = require(path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'gulp'));
+        userConfig = require(
+            path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'gulp')
+        ) || {};
     } catch ( error ) {}
 
-    // sanitize
-    projectConfig[gulpName] = projectConfig[gulpName] || {};
-    projectConfig[gulpName].profiles = projectConfig[gulpName].profiles || {};
+    // task set is marked for deletion with null/false
+    if ( gulpName in userConfig && !userConfig[gulpName] ) {
+        result = {};
+    } else {
+        // merge user general config with the package config
+        extend(true, result, baseConfig, userConfig[gulpName] || {});
 
-    // merge user general config with the package config
-    extend(true, packageConfig, projectConfig[gulpName] || {});
-
-    // merge all profiles with the default one
-    Object.keys(packageConfig.profiles).forEach(function ( name ) {
-        // do not allow to change default profile
-        if ( name !== 'default' ) {
+        // merge all profiles with the default one
+        Object.keys(result).forEach(function ( name ) {
             // profile name is marked for deletion with null/false
-            if ( name in projectConfig[gulpName].profiles && !projectConfig[gulpName].profiles[name] ) {
-                delete packageConfig.profiles[name];
+            if ( userConfig[gulpName] && name in userConfig[gulpName] && !userConfig[gulpName][name] ) {
+                delete result[name];
             } else {
-                // merge this profile with the default one
-                packageConfig.profiles[name] = extend(
-                    true, {}, packageConfig.profiles.default, packageConfig.profiles[name]
-                );
+                // not the default profile
+                if ( result.default !== result[name] ) {
+                    // merge this profile with the default one
+                    result[name] = extend(
+                        true, {}, result.default, result[name]
+                    );
+                }
             }
-        }
-    });
+        });
+    }
 
-    return packageConfig;
+    console.log(result);
+    return result;
 }
 
 
