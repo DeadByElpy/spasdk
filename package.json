@@ -12,36 +12,21 @@
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
-        "extend": "3.*.*",
         "del": "2.*.*",
-        "gettext-parser": "1.*.*",
+        "extend": "3.*.*",
         "gulp": "3.*.*",
-        "gulp-cssnano": "2.*.*",
-        "gulp-eslint": "1.*.*",
-        "gulp-less": "3.*.*",
-        "gulp-livereload": "3.*.*",
-        "gulp-plumber": "1.*.*",
-        "gulp-rename": "1.*.*",
-        "gulp-repl": "0.*.*",
-        "gulp-sourcemaps": "1.*.*",
         "gulp-util": "3.*.*",
-        "gulp-zip": "3.*.*",
-        "ip": "1.*.*",
         "node-notifier": "4.*.*",
-        "node-static": "0.*.*",
-        "node-sass": "3.*.*",
         "open": "0.*.*",
         "require-nocache": "1.*.*",
-        "tty-colors": "0.*.*",
-        "webpack-stream": "2.*.*"
+        "tty-colors": "0.*.*"
     },
     "keywords": [
         "spa",
         "spasdk",
         "framework",
         "gulp",
-        "develop",
-        "tasks"
+        "common"
     ],
     "license": "GPL-3.0"
 }
