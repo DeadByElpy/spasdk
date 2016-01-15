@@ -8,50 +8,63 @@
 
 'use strict';
 
-var path     = require('path'),
-    gulp     = require('gulp'),
-    extend   = require('extend'),
-    notifier = require('node-notifier'),
-    util     = require('gulp-util');
+var path       = require('path'),
+    gulp       = require('gulp'),
+    extend     = require('extend'),
+    notifier   = require('node-notifier'),
+    util       = require('gulp-util'),
+    inspect    = require('util').inspect,
+    rootConfig = require('./config');
 
 
 function load ( fileName, gulpName ) {
-    var baseConfig = require(fileName) || {},
+    var baseConfig = require(fileName),
         userConfig = {},
-        result     = {};
+        result     = null;
 
     try {
         // this config file is not mandatory
         userConfig = require(
             path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'gulp')
-        ) || {};
-    } catch ( error ) {}
+        );
+    } catch ( error ) {
+        module.exports.error('config', error.message);
+    }
 
-    // task set is marked for deletion with null/false
-    if ( gulpName in userConfig && !userConfig[gulpName] ) {
-        result = {};
-    } else {
-        // merge user general config with the package config
-        extend(true, result, baseConfig, userConfig[gulpName] || {});
+    // sanitize task set object and root default
+    userConfig = userConfig || {};
+    userConfig = typeof userConfig === 'object' ? userConfig : {};
+    userConfig.default = userConfig.default || {};
+    userConfig.default = typeof userConfig.default === 'object' ? userConfig.default : {};
 
-        // merge all profiles with the default one
+    // task set is not marked for deletion with null/false
+    if ( !(gulpName in userConfig && !userConfig[gulpName]) ) {
+        // sanitize profiles object
+        userConfig[gulpName] = typeof userConfig[gulpName] === 'object' ? userConfig[gulpName] : {};
+
+        // merge user general config with the package base config
+        result = extend(true, {}, rootConfig, baseConfig, userConfig.default, userConfig[gulpName]);
+
+        // remove profiles marked for deletion with null/false
         Object.keys(result).forEach(function ( name ) {
-            // profile name is marked for deletion with null/false
-            if ( userConfig[gulpName] && name in userConfig[gulpName] && !userConfig[gulpName][name] ) {
+            if ( !result[name] ) {
                 delete result[name];
-            } else {
-                // not the default profile
-                if ( result.default !== result[name] ) {
-                    // merge this profile with the default one
-                    result[name] = extend(
-                        true, {}, result.default, result[name]
-                    );
-                }
+            }
+        });
+
+        // rework or remove profiles
+        Object.keys(result).forEach(function ( name ) {
+            // not the default profile
+            if ( name !== 'default' ) {
+                // merge this profile with the default one
+                result[name] = extend(
+                    true, {}, result.default, result[name]
+                );
             }
         });
     }
 
-    console.log(result);
+    console.log(inspect(result, {depth: 5, colors: true}));
     return result;
 }
 
@@ -75,7 +88,7 @@ function log ( name, message ) {
 
 function popup ( config ) {
     if ( config.icon ) {
-        config.icon = path.join(__dirname, 'img', config.icon + '.png');
+        config.icon = path.join(__dirname, 'media', config.icon + '.png');
     }
 
     notifier.notify(config);
@@ -91,6 +104,38 @@ function error ( name, message ) {
     message.forEach(function ( line ) {
         util.log(title, line.reset);
     });
+}
+
+
+function notify ( config ) {
+    // sanitize
+    config = config || {};
+    config.console = config.console || {};
+    config.popup   = config.popup   || {};
+    config.sound   = config.sound   || {};
+
+    return {
+        info: function ( data ) {
+            if ( config.console.info ) {
+                (Array.isArray(data.info) || data.info.split('\n')).forEach(function ( line ) {
+                    util.log(pad(data.name).inverse, line);
+                });
+            }
+
+            if ( config.popup.info ) {
+                data.icon = data.icon || path.join(__dirname, 'media', 'info.png');
+                notifier.notify(data);
+            }
+
+            if ( config.sound.info ) {
+
+            }
+        },
+
+        error: function ( data ) {
+
+        }
+    };
 }
 
 
@@ -118,6 +163,7 @@ module.exports = {
     log:   log,
     error: error,
     popup: popup,
+    notify: notify,
     load:  load,
     registerTasks: registerTasks
 };
