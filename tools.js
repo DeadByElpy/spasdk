@@ -14,36 +14,42 @@ var path       = require('path'),
     notifier   = require('node-notifier'),
     util       = require('gulp-util'),
     inspect    = require('util').inspect,
-    rootConfig = require('./config');
+    rootConfig = require('./config'),
+    pkgInfo    = require(path.join(process.cwd(), 'package.json'));
 
 
-function load ( fileName, gulpName ) {
-    var baseConfig = require(fileName),
-        userConfig = {},
+function config ( context, gulpName ) {
+    var baseConfig = require(path.join(path.dirname(context.id), 'config')),
+        userConfig = require(path.join(process.cwd(), 'gulpfile.js'))[gulpName],
         result     = null;
 
-    try {
-        // this config file is not mandatory
-        userConfig = require(
-            path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'gulp')
-        );
-    } catch ( error ) {
-        module.exports.error('config', error.message);
-    }
+    //console.log('userConfig');
+    //console.log(userConfig);
 
-    // sanitize task set object and root default
-    userConfig = userConfig || {};
-    userConfig = typeof userConfig === 'object' ? userConfig : {};
-    userConfig.default = userConfig.default || {};
-    userConfig.default = typeof userConfig.default === 'object' ? userConfig.default : {};
+    //extend(true, baseConfig.default, userConfig.default);
 
+    //try {
+    //    // this config file is not mandatory
+    //    userConfig = require(
+    //        path.join(process.env.PATH_ROOT, process.env.PATH_CFG, 'gulp')
+    //    );
+    //} catch ( error ) {
+    //    module.exports.error('config', error.message);
+    //}
+	//
+    //// sanitize task set object and root default
+    //userConfig = userConfig || {};
+    //userConfig = typeof userConfig === 'object' ? userConfig : {};
+    //userConfig.default = userConfig.default || {};
+    //userConfig.default = typeof userConfig.default === 'object' ? userConfig.default : {};
+	//
     // task set is not marked for deletion with null/false
-    if ( !(gulpName in userConfig && !userConfig[gulpName]) ) {
+    if ( userConfig !== null && userConfig !== false ) {
         // sanitize profiles object
-        userConfig[gulpName] = typeof userConfig[gulpName] === 'object' ? userConfig[gulpName] : {};
+        //userConfig[gulpName] = typeof userConfig[gulpName] === 'object' ? userConfig[gulpName] : {};
 
         // merge user general config with the package base config
-        result = extend(true, {}, rootConfig, baseConfig, userConfig.default, userConfig[gulpName]);
+        result = extend(true, {}, baseConfig, userConfig);
 
         // remove profiles marked for deletion with null/false
         Object.keys(result).forEach(function ( name ) {
@@ -52,7 +58,7 @@ function load ( fileName, gulpName ) {
             }
         });
 
-        // rework or remove profiles
+        // extend profiles
         Object.keys(result).forEach(function ( name ) {
             // not the default profile
             if ( name !== 'default' ) {
@@ -64,9 +70,36 @@ function load ( fileName, gulpName ) {
         });
     }
 
-    console.log(inspect(result, {depth: 5, colors: true}));
+    //console.log(inspect(result, {depth: 5, colors: true}));
     return result;
 }
+
+
+//function init ( config ) {
+//    Object.keys(pkgInfo.dependencies).forEach(function ( name ) {
+//        // get only gulp task packages
+//        if ( name.indexOf(config.prefix) === 0 ) {
+//            load(name);
+//        }
+//    });
+//}
+
+
+//function load ( prefix ) {
+//    var tasks = {};
+//
+//    Object.keys(pkgInfo.dependencies).forEach(function ( name ) {
+//        // get only gulp task packages
+//        if ( name.indexOf(prefix) === 0 ) {
+//            extend(true, tasks, require(name));
+//        }
+//    });
+//
+//    //var tasks = require(name);
+//
+//    //console.log(tasks);
+//    return tasks;
+//}
 
 
 function pad ( str ) {
@@ -139,31 +172,54 @@ function notify ( config ) {
 }
 
 
-function registerTasks ( tree ) {
-    //console.log(tree);
-    //return;
-
-    //var topKeys = Object.keys(tree);
-
-    Object.keys(tree).forEach(function ( topName ) {
-        //var subKeys = Object.keys(tree[topName]);
-
-        //console.log(topName, tree[topName]);
-        gulp.task(topName, tree[topName]);
-
-        //subKeys.forEach(function ( subName ) {
-        //    console.log(topName, subName, tree[topName][subName]);
-        //});
-    });
-}
+//function register ( tasks ) {
+//    // extract global tasks
+//    Object.keys(tasks).forEach(function ( name ) {
+//        var parts = name.split(':');
+//
+//        // task like "jade:build"
+//        if ( parts.length === 2 ) {
+//            // create/add in general list
+//            tasks[parts[1]] = tasks[parts[1]] || [];
+//            tasks[parts[1]].push(name);
+//        }
+//    });
+//
+//    // create gulp tasks
+//    Object.keys(tasks).forEach(function ( name ) {
+//        // skip marked for deletion
+//        if ( name && tasks[name] ) {
+//            gulp.task(name, tasks[name]);
+//        }
+//    });
+//
+//    console.log(tasks);
+//
+//    return tasks;
+//
+//    //var topKeys = Object.keys(tree);
+//
+//    //Object.keys(tree).forEach(function ( topName ) {
+//    //    //var subKeys = Object.keys(tree[topName]);
+//	//
+//    //    //console.log(topName, tree[topName]);
+//    //    gulp.task(topName, tree[topName]);
+//	//
+//    //    //subKeys.forEach(function ( subName ) {
+//    //    //    console.log(topName, subName, tree[topName][subName]);
+//    //    //});
+//    //});
+//}
 
 
 // public
 module.exports = {
-    log:   log,
-    error: error,
-    popup: popup,
+    //init:   init,
+    //load:   load,
+    log:    log,
+    error:  error,
+    popup:  popup,
     notify: notify,
-    load:  load,
-    registerTasks: registerTasks
+    config: config
+    //register: register
 };
