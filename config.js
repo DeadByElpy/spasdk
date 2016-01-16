@@ -30,6 +30,11 @@ module.exports = {
                 info:  false,
                 error: true
             }
-        }
+        },
+
+        // false to prevent watch task creation
+        // otherwise array of files to monitor
+        // see format in https://github.com/isaacs/node-glob
+        watch: false
     }
 };
