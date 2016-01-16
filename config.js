@@ -7,9 +7,16 @@
 
 'use strict';
 
-// public
+// root config
+// to be extended in other gulp packages
 module.exports = {
     default: {
+        // directory to look for source files
+        sourcePath: 'src',
+
+        // directory to store output files
+        targetPath: 'app',
+
         notifications: {
             console: {
                 info:  true,
