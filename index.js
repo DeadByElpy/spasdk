@@ -5,7 +5,36 @@
 
 'use strict';
 
-var path  = require('path'),
+var path   = require('path'),
+    extend = require('extend'),
+    tasks  = require('./lib/tasks');
+
+
+// merge configs
+// spa root + user
+extend(true,
+    require('./config').default,
+    require(path.join(process.cwd(), 'gulpfile.js')).default
+);
+
+// load and create gulp tasks
+tasks.register(
+    tasks.load('spa-gulp-')
+);
+
+
+//console.log('rootConfig');
+//console.log(rootConfig);
+
+//console.log(module);
+
+//console.log(require('./config'));
+//console.log(userConfig);
+
+//require('spa-gulp-jade');
+//require('spa-gulp-lint');
+
+/*var path  = require('path'),
     gulp  = require('gulp'),
     tools = require('./tools'),
     env   = process.env,
@@ -42,7 +71,7 @@ Object.keys(pkgInfo.dependencies).forEach(function ( name ) {
 //gulp.task('build', global.tasks.build);
 //gulp.task('clean', global.tasks.clean);
 
-tools.registerTasks(global.tasks);
+tools.registerTasks(global.tasks);*/
 
 
 /*// load all tasks
@@ -73,4 +102,4 @@ gulp.task('default', ['build', 'serve']);*/
 
 
 // public
-module.exports = gulp;
+//module.exports = tools;
