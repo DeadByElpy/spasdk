@@ -7,6 +7,9 @@
 
 'use strict';
 
+var path = require('path');
+
+
 // root SPA config
 // to be extended in other gulp packages
 module.exports = {
@@ -19,18 +22,43 @@ module.exports = {
 
         notifications: {
             console: {
-                info:  true,
-                error: true
+                info: true,
+                warn: true,
+                fail: true
             },
             popup:   {
-                info:  false,
-                error: true
+                info: {
+                    show: false,
+                    icon: path.join(__dirname, 'media', 'info.png')
+                },
+                warn: {
+                    show: true,
+                    icon: path.join(__dirname, 'media', 'warn.png')
+                },
+                fail: {
+                    show: true,
+                    icon: path.join(__dirname, 'media', 'fail.png')
+                }
             },
             sound:   {
-                info:  false,
-                error: true
+                info: {
+                    play: false,
+                    file: path.join(__dirname, 'media', 'info.wav')
+                },
+                warn: {
+                    play: true,
+                    file: path.join(__dirname, 'media', 'warn.wav')
+                },
+                fail: {
+                    play: true,
+                    file: path.join(__dirname, 'media', 'fail.wav')
+                }
             }
         },
+
+        //notify: {
+		//
+        //},
 
         // false to prevent watch task creation
         // otherwise array of files to monitor
