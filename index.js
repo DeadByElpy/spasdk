@@ -10,6 +10,9 @@ var path   = require('path'),
     tasks  = require('./lib/tasks');
 
 
+// enable colors in console
+require('tty-colors');
+
 // merge configs
 // spa root + user
 extend(true,
