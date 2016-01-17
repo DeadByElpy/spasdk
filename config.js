@@ -20,6 +20,7 @@ module.exports = {
         // directory to store output files
         targetPath: 'app',
 
+        // info channels
         notifications: {
             console: {
                 info: true,
@@ -55,10 +56,6 @@ module.exports = {
                 }
             }
         },
-
-        //notify: {
-		//
-        //},
 
         // false to prevent watch task creation
         // otherwise array of files to monitor
