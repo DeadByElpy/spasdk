@@ -12,13 +12,10 @@
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
-        "del": "2.*.*",
         "extend": "3.*.*",
         "gulp": "3.*.*",
         "gulp-util": "3.*.*",
         "node-notifier": "4.*.*",
-        "open": "0.*.*",
-        "require-nocache": "1.*.*",
         "tty-colors": "0.*.*"
     },
     "keywords": [
