@@ -27,7 +27,7 @@ module.exports = {
                 warn: true,
                 fail: true
             },
-            popup:   {
+            popup: {
                 info: {
                     show: false,
                     icon: path.join(__dirname, 'media', 'info.png')
@@ -41,7 +41,7 @@ module.exports = {
                     icon: path.join(__dirname, 'media', 'fail.png')
                 }
             },
-            sound:   {
+            sound: {
                 info: {
                     play: false,
                     file: path.join(__dirname, 'media', 'info.wav')
