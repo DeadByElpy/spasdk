@@ -15,10 +15,10 @@ var path = require('path');
 module.exports = {
     default: {
         // directory to look for source files
-        sourcePath: 'src',
+        source: 'src',
 
         // directory to store output files
-        targetPath: 'app',
+        target: 'app',
 
         // info channels
         notifications: {

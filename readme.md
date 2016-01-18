@@ -51,16 +51,16 @@ module.exports = {
     default: {
         notifications: {
             popup: {
-                error: false
+                fail: false
             }
         }
     },
     jade: {
         default: {
-            sourcePath: 'src/pug'
+            source: 'sources/pug/main.pug'
         },
         develop: {
-            targetFile: 'debug.html'
+            target: 'dst/debug.html'
         },
         release: false,
         test: {}
@@ -71,9 +71,9 @@ module.exports = {
 
 This will apply the following changes:
 
-* disable error popup notifications for all profiles and all tasks
-* set `pug` as the directory to look for source files (instead of default `src/jade`) for all Jade profiles
-* set `debug.html` as  the intended output file name (instead of default `develop.html`) for Jade `develop` profile only
+* disable failure popup notifications for all profiles and all tasks
+* set `sources/pug/main.pug` as the main entry point (instead of default `src/jade/main.jade`) for all Jade profiles
+* set `dst/debug.html` as  the intended output file (instead of default `app/develop.html`) for Jade `develop` profile only
 * remove Jade `release` profile
 * add new Jade `test` profile filled with options from `default` profile
 * completely disable all SASS tasks
