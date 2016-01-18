@@ -20,6 +20,9 @@ module.exports = {
         // directory to store output files
         target: 'app',
 
+        // base port
+        port: 8000,
+
         // info channels
         notifications: {
             console: {
