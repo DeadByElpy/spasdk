@@ -13,56 +13,38 @@ var path = require('path');
 // root SPA config
 // to be extended in other gulp packages
 module.exports = {
-    default: {
-        // directory to look for source files
-        source: 'src',
+    //default: {
+    // directory to look for source files
+    source: 'src',
 
-        // directory to store output files
-        target: 'app',
+    // directory to store output files
+    target: 'app',
 
-        // base port
-        port: 8000,
+    // base port
+    //port: 8000,
 
-        // info channels
-        notifications: {
-            console: {
-                info: true,
-                warn: true,
-                fail: true
-            },
-            popup: {
-                info: {
-                    show: false,
-                    icon: path.join(__dirname, 'media', 'info.png')
-                },
-                warn: {
-                    show: true,
-                    icon: path.join(__dirname, 'media', 'warn.png')
-                },
-                fail: {
-                    show: true,
-                    icon: path.join(__dirname, 'media', 'fail.png')
-                }
-            },
-            sound: {
-                info: {
-                    play: false,
-                    file: path.join(__dirname, 'media', 'info.wav')
-                },
-                warn: {
-                    play: true,
-                    file: path.join(__dirname, 'media', 'warn.wav')
-                },
-                fail: {
-                    play: true,
-                    file: path.join(__dirname, 'media', 'fail.wav')
-                }
-            }
+    // info channels
+    notifications: {
+        console: {
+            info: true,
+            warn: true,
+            fail: true
         },
-
-        // false to prevent watch task creation
-        // otherwise array of files to monitor
-        // see format in https://github.com/isaacs/node-glob
-        watch: false
+        popup: {
+            info: {show: false, icon: path.join(__dirname, 'media', 'info.png')},
+            warn: {show: true,  icon: path.join(__dirname, 'media', 'warn.png')},
+            fail: {show: true,  icon: path.join(__dirname, 'media', 'fail.png')}
+        },
+        sound: {
+            info: {play: false, file: path.join(__dirname, 'media', 'info.wav')},
+            warn: {play: true,  file: path.join(__dirname, 'media', 'warn.wav')},
+            fail: {play: true,  file: path.join(__dirname, 'media', 'fail.wav')}
+        }
     }
+
+    // false to prevent watch task creation
+    // otherwise array of files to monitor
+    // see format in https://github.com/isaacs/node-glob
+    //watch: false
+    //}
 };
