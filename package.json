@@ -1,20 +1,18 @@
 {
-    "name": "spa-gulp",
+    "name": "spa-system",
     "version": "1.0.1",
-    "description": "STB SDK development gulp tasks.",
+    "description": "SDK development tasks.",
     "author": {
         "name": "Stanislav Kalashnik",
         "email": "darkpark.main@gmail.com"
     },
-    "repository": "spasdk/gulp",
+    "repository": "spasdk/system",
     "scripts": {
         "lint": "eslint *.js",
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
         "extend": "3.*.*",
-        "gulp": "3.*.*",
-        "gulp-util": "3.*.*",
         "node-notifier": "4.*.*",
         "tty-colors": "0.*.*"
     },
@@ -22,8 +20,7 @@
         "spa",
         "spasdk",
         "framework",
-        "gulp",
-        "common"
+        "system"
     ],
     "license": "GPL-3.0"
 }
