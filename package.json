@@ -13,6 +13,9 @@
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
+        "commander": "2.*.*",
+        "cjs-emitter": "1.*.*",
+        "debug": "2.*.*",
         "extend": "3.*.*",
         "node-notifier": "4.*.*",
         "tty-colors": "0.*.*"
