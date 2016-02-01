@@ -13,18 +13,14 @@ var program = require('commander'),
 
 program
     .version(pkgData.version)
-    .option('-t, --task <name>', 'run task')
+    .usage('[options] <task ...>')
     .parse(process.argv);
-
-console.log(program);
 
 global.DEBUG = true;
 
 // enable colors in console
 require('tty-colors');
 
-require('../lib/app');
-
-
-// parse and invoke commands when defined
-program.parse(process.argv);
+require('../lib/app').init({
+    start: program.args
+});
