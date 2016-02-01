@@ -18,8 +18,9 @@
         "debug": "2.*.*",
         "extend": "3.*.*",
         "node-notifier": "4.*.*",
-        "tty-colors": "0.*.*",
-
+        "tty-colors": "0.*.*"
+    },
+    "optionalDependencies": {
         "spa-system-jade": "spasdk/system-jade",
 
         "spa-gulp-gettext": "spasdk/gulp-gettext",
