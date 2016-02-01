@@ -1,12 +1,12 @@
 {
-    "name": "spa-system",
-    "version": "1.0.1",
-    "description": "SDK development tasks.",
+    "name": "spasdk",
+    "version": "1.0.0",
+    "description": "SPA development environment and tools.",
     "author": {
         "name": "Stanislav Kalashnik",
         "email": "darkpark.main@gmail.com"
     },
-    "repository": "spasdk/system",
+    "repository": "spasdk/spasdk",
     "bin": "./bin/cli.js",
     "scripts": {
         "lint": "eslint *.js",
@@ -18,13 +18,23 @@
         "debug": "2.*.*",
         "extend": "3.*.*",
         "node-notifier": "4.*.*",
-        "tty-colors": "0.*.*"
+        "tty-colors": "0.*.*",
+
+        "spa-system-jade": "spasdk/system-jade",
+
+        "spa-gulp-gettext": "spasdk/gulp-gettext",
+        "spa-gulp-sass": "spasdk/gulp-sass",
+        "spa-gulp-webpack": "spasdk/gulp-webpack",
+        "spa-gulp-zip": "spasdk/gulp-zip",
+        "spa-gulp-eslint": "spasdk/gulp-eslint",
+        "spa-gulp-livereload": "spasdk/gulp-livereload",
+        "spa-gulp-repl": "spasdk/gulp-repl",
+        "spa-gulp-static": "spasdk/gulp-static"
     },
     "keywords": [
         "spa",
         "spasdk",
-        "framework",
-        "system"
+        "framework"
     ],
     "license": "GPL-3.0"
 }
