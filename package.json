@@ -17,6 +17,7 @@
         "cjs-emitter": "1.*.*",
         "debug": "2.*.*",
         "extend": "3.*.*",
+        "gulp": "gulpjs/gulp#4.0",
         "node-notifier": "4.*.*",
         "tty-colors": "0.*.*"
     },
