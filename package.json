@@ -24,6 +24,7 @@
     },
     "optionalDependencies": {
         "spa-plugin-jade": "spasdk/plugin-jade",
+        "spa-plugin-static": "spasdk/plugin-static",
 
         "spa-gulp-gettext": "spasdk/gulp-gettext",
         "spa-gulp-sass": "spasdk/gulp-sass",
@@ -31,8 +32,7 @@
         "spa-gulp-zip": "spasdk/gulp-zip",
         "spa-gulp-eslint": "spasdk/gulp-eslint",
         "spa-gulp-livereload": "spasdk/gulp-livereload",
-        "spa-gulp-repl": "spasdk/gulp-repl",
-        "spa-gulp-static": "spasdk/gulp-static"
+        "spa-gulp-repl": "spasdk/gulp-repl"
     },
     "keywords": [
         "spa",
