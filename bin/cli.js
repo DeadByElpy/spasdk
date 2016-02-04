@@ -10,7 +10,6 @@
 var program = require('commander'),
     pkgData = require('../package.json');
 
-
 program
     .version(pkgData.version)
     .usage('[options] <task ...>')
@@ -22,5 +21,10 @@ global.DEBUG = true;
 require('tty-colors');
 
 require('../lib/app').init({
-    start: program.args
+    tasks: program.args,
+    //plugins: Object.keys(pkgData.optionalDependencies)
+    plugins: [
+        'spa-plugin-jade',
+        'spa-plugin-static'
+    ]
 });

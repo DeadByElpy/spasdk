@@ -1,7 +1,7 @@
 Development tasks
 =================
 
-[![NPM version](https://img.shields.io/npm/v/spa-system.svg?style=flat-square)](https://www.npmjs.com/package/spa-system)
+[![NPM version](https://img.shields.io/npm/v/spasdk.svg?style=flat-square)](https://www.npmjs.com/package/spasdk)
 [![Dependencies Status](https://img.shields.io/david/spasdk/system.svg?style=flat-square)](https://david-dm.org/spasdk/system)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-blue.svg?style=flat-square)](https://gitter.im/DarkPark/spasdk)
 
@@ -9,7 +9,7 @@ Development tasks
 ## Installation ##
 
 ```bash
-npm install spa-system
+npm install spasdk
 ```
 
 
@@ -18,7 +18,7 @@ npm install spa-system
 Add to the scope:
 
 ```js
-var system = require('spa-system');
+var spasdk = require('spasdk');
 ```
 
 #### Environment variables
@@ -94,4 +94,4 @@ Pull requests are welcomed with respect to the [JavaScript Code Style](https://g
 
 ## License ##
 
-`spa-system` is released under the [GPL-3.0 License](http://opensource.org/licenses/GPL-3.0).
+`spasdk` is released under the [GPL-3.0 License](http://opensource.org/licenses/GPL-3.0).
