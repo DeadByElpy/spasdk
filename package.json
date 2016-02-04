@@ -15,6 +15,7 @@
     "dependencies": {
         "commander": "2.*.*",
         "cjs-emitter": "1.*.*",
+        "cjs-runner": "cjssdk/runner",
         "debug": "2.*.*",
         "extend": "3.*.*",
         "gulp": "gulpjs/gulp#4.0",
@@ -22,7 +23,7 @@
         "tty-colors": "0.*.*"
     },
     "optionalDependencies": {
-        "spa-system-jade": "spasdk/system-jade",
+        "spa-plugin-jade": "spasdk/plugin-jade",
 
         "spa-gulp-gettext": "spasdk/gulp-gettext",
         "spa-gulp-sass": "spasdk/gulp-sass",
