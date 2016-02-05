@@ -24,13 +24,13 @@
     },
     "optionalDependencies": {
         "spa-plugin-eslint": "spasdk/plugin-eslint",
+        "spa-plugin-gettext": "spasdk/plugin-gettext",
         "spa-plugin-jade": "spasdk/plugin-jade",
         "spa-plugin-static": "spasdk/plugin-static",
         "spa-plugin-sass": "spasdk/plugin-sass",
         "spa-plugin-webpack": "spasdk/plugin-webpack",
+        "spa-plugin-zip": "spasdk/plugin-zip",
 
-        "spa-gulp-gettext": "spasdk/gulp-gettext",
-        "spa-gulp-zip": "spasdk/gulp-zip",
         "spa-gulp-livereload": "spasdk/gulp-livereload",
         "spa-gulp-repl": "spasdk/gulp-repl"
     },
