@@ -25,6 +25,8 @@ require('../lib/app').init({
     //plugins: Object.keys(pkgData.optionalDependencies)
     plugins: [
         'spa-plugin-jade',
-        'spa-plugin-static'
+        'spa-plugin-sass',
+        'spa-plugin-static',
+        'spa-plugin-webpack'
     ]
 });
