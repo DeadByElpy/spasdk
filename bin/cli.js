@@ -27,6 +27,7 @@ require('../lib/app').init({
         'spa-plugin-jade',
         'spa-plugin-sass',
         'spa-plugin-static',
+        'spa-plugin-wamp',
         'spa-plugin-webpack'
     ]
 });
