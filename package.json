@@ -25,10 +25,10 @@
     "optionalDependencies": {
         "spa-plugin-jade": "spasdk/plugin-jade",
         "spa-plugin-static": "spasdk/plugin-static",
+        "spa-plugin-sass": "spasdk/plugin-sass",
         "spa-plugin-webpack": "spasdk/plugin-webpack",
 
         "spa-gulp-gettext": "spasdk/gulp-gettext",
-        "spa-gulp-sass": "spasdk/gulp-sass",
         "spa-gulp-zip": "spasdk/gulp-zip",
         "spa-gulp-eslint": "spasdk/gulp-eslint",
         "spa-gulp-livereload": "spasdk/gulp-livereload",
