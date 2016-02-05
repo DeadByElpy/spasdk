@@ -23,6 +23,7 @@
         "tty-colors": "0.*.*"
     },
     "optionalDependencies": {
+        "spa-plugin-eslint": "spasdk/plugin-eslint",
         "spa-plugin-jade": "spasdk/plugin-jade",
         "spa-plugin-static": "spasdk/plugin-static",
         "spa-plugin-sass": "spasdk/plugin-sass",
@@ -30,7 +31,6 @@
 
         "spa-gulp-gettext": "spasdk/gulp-gettext",
         "spa-gulp-zip": "spasdk/gulp-zip",
-        "spa-gulp-eslint": "spasdk/gulp-eslint",
         "spa-gulp-livereload": "spasdk/gulp-livereload",
         "spa-gulp-repl": "spasdk/gulp-repl"
     },
