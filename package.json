@@ -30,9 +30,7 @@
         "spa-plugin-static": "spasdk/plugin-static",
         "spa-plugin-sass": "spasdk/plugin-sass",
         "spa-plugin-webpack": "spasdk/plugin-webpack",
-        "spa-plugin-zip": "spasdk/plugin-zip",
-
-        "spa-gulp-repl": "spasdk/gulp-repl"
+        "spa-plugin-zip": "spasdk/plugin-zip"
     },
     "keywords": [
         "spa",
