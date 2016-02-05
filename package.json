@@ -29,6 +29,7 @@
         "spa-plugin-livereload": "spasdk/plugin-livereload",
         "spa-plugin-static": "spasdk/plugin-static",
         "spa-plugin-sass": "spasdk/plugin-sass",
+        "spa-plugin-wamp": "spasdk/plugin-wamp",
         "spa-plugin-webpack": "spasdk/plugin-webpack",
         "spa-plugin-zip": "spasdk/plugin-zip"
     },
