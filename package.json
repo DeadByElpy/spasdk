@@ -18,7 +18,6 @@
         "cjs-runner": "cjssdk/runner",
         "debug": "2.*.*",
         "extend": "3.*.*",
-        "gulp": "3.*.*",
         "node-notifier": "4.*.*",
         "tty-colors": "0.*.*"
     },
@@ -31,6 +30,7 @@
         "spa-plugin-sass": "spasdk/plugin-sass",
         "spa-plugin-wamp": "spasdk/plugin-wamp",
         "spa-plugin-webpack": "spasdk/plugin-webpack",
+        "spa-plugin-webui": "spasdk/plugin-webui",
         "spa-plugin-zip": "spasdk/plugin-zip"
     },
     "keywords": [
