@@ -13,9 +13,10 @@
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
-        "commander": "2.*.*",
+        "chokidar": "1.*.*",
         "cjs-emitter": "1.*.*",
         "cjs-runner": "cjssdk/runner",
+        "commander": "2.*.*",
         "debug": "2.*.*",
         "extend": "3.*.*",
         "node-notifier": "4.*.*",
