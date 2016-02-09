@@ -12,7 +12,7 @@ var path   = require('path'),
     log    = require('gulp-util').log,
     ws     = require('ws'),
     config = require(path.join(process.env.PATH_CFG, 'logger')),
-    title  = 'logger  '.inverse.yellow;
+    title  = 'logger  ';
 
 
 gulp.task('logger', function ( done ) {
@@ -20,7 +20,7 @@ gulp.task('logger', function ( done ) {
 
     if ( !config.active ) {
         // just exit
-        log(title, 'task is disabled'.grey);
+        log(title, 'task is disabled');
 
         done();
     }

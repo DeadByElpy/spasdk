@@ -26,7 +26,7 @@ gulp.task('lint', function () {
         .pipe(eslint.format('stylish', function ( result ) {
             // make nice output
             result.split('\n').forEach(function ( line ) {
-                log('eslint  '.bgRed, line + ''.reset);
+                log('eslint  ', line + ''.reset);
             });
         }));
 });
