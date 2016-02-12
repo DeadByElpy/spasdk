@@ -13,12 +13,15 @@ var program = require('commander'),
 program
     .version(pkgData.version)
     .usage('[options] <task ...>')
+    .option('-l, --list <items>', 'A list')
     .parse(process.argv);
 
 global.DEBUG = true;
 
 // enable colors in console
 require('tty-colors');
+
+console.log(program);
 
 require('../lib/app').init({
     tasks: program.args,

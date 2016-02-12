@@ -13,7 +13,28 @@ var path   = require('path'),
 // enable colors in console
 require('tty-colors');
 
-// merge configs
+global.DEBUG = true;
+
+// public
+module.exports = require('./lib/app').init({
+    tasks: [],
+    //plugins: Object.keys(pkgData.optionalDependencies)
+    plugins: [
+        'spa-plugin-jade',
+        'spa-plugin-livereload',
+        'spa-plugin-sass',
+        'spa-plugin-static',
+        'spa-plugin-wamp',
+        'spa-plugin-webpack',
+        'spa-plugin-webui'
+    ]
+});
+
+runner.run(runner.parallel('jade:build', 'webpack:build', 'sass:build'));
+
+runner.run(runner.parallel('jade:watch:develop sass:watch:develop webpack:watch:develop'));
+
+/*// merge configs
 // spa root + user
 extend(true,
     require('./config').default,
@@ -23,7 +44,7 @@ extend(true,
 // load and create gulp tasks
 tasks.register(
     tasks.load('spa-gulp-')
-);
+);*/
 
 
 //console.log('rootConfig');
