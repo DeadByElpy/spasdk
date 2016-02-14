@@ -5,20 +5,21 @@
 
 'use strict';
 
-var path   = require('path'),
-    extend = require('extend'),
-    tasks  = require('./lib/tasks');
+global.DEBUG = true;
+
+var app    = require('./lib/app'),
+    runner = app.runner;
 
 
 // enable colors in console
-require('tty-colors');
-
-global.DEBUG = true;
+//require('tty-colors');
 
 // public
-module.exports = require('./lib/app').init({
-    tasks: [],
-    //plugins: Object.keys(pkgData.optionalDependencies)
+module.exports = app;
+
+app.init({
+    //tasks: process.argv.slice(2),
+    //plugins: Object.keys(require('./package.json').optionalDependencies)
     plugins: [
         'spa-plugin-jade',
         'spa-plugin-livereload',
@@ -30,9 +31,30 @@ module.exports = require('./lib/app').init({
     ]
 });
 
-runner.run(runner.parallel('jade:build', 'webpack:build', 'sass:build'));
+//console.log(runner.tasks);
 
-runner.run(runner.parallel('jade:watch:develop sass:watch:develop webpack:watch:develop'));
+
+runner.task('default',
+    runner.serial(
+        'jade:build',
+        'webpack:build',
+        'sass:cache',
+        'sass:build',
+        runner.parallel(
+            'jade:watch:develop',
+            'sass:watch:develop',
+            'webpack:watch:develop',
+            'static:serve:default',
+            'wamp:serve:default',
+            'webui:serve:default',
+            'livereload:watch:default'
+        )
+    )
+);
+
+
+//runner.run('default');
+
 
 /*// merge configs
 // spa root + user

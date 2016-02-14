@@ -7,7 +7,12 @@
 
 'use strict';
 
-var program = require('commander'),
+var app    = require('../index'),
+    runner = app.runner;
+
+runner.run(runner.serial.apply(runner, process.argv.slice(2)));
+
+/*var program = require('commander'),
     pkgData = require('../package.json');
 
 program
@@ -21,7 +26,7 @@ global.DEBUG = true;
 // enable colors in console
 require('tty-colors');
 
-console.log(program);
+//console.log(program);
 
 require('../lib/app').init({
     tasks: program.args,
@@ -35,4 +40,4 @@ require('../lib/app').init({
         'spa-plugin-webpack',
         'spa-plugin-webui'
     ]
-});
+});/**/
