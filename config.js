@@ -37,8 +37,8 @@ module.exports = {
         },
         sound: {
             info: {play: false, file: path.join(__dirname, 'media', 'info.wav')},
-            warn: {play: true,  file: path.join(__dirname, 'media', 'warn.wav')},
-            fail: {play: true,  file: path.join(__dirname, 'media', 'fail.wav')}
+            warn: {play: false, file: path.join(__dirname, 'media', 'warn.wav')},
+            fail: {play: false, file: path.join(__dirname, 'media', 'fail.wav')}
         }
     }
 
