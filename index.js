@@ -45,7 +45,7 @@ runner.task('default',
             'sass:watch:cache:develop',
             'sass:watch:scss:develop',
             'webpack:watch:develop',
-            'static:serve:default',
+            'static:serve:develop',
             'wamp:serve:default',
             'webui:serve:default',
             'livereload:watch:default'
