@@ -19,6 +19,7 @@
         "commander": "2.*.*",
         "debug": "2.*.*",
         "extend": "3.*.*",
+        "ip": "1.*.*",
         "node-notifier": "4.*.*",
         "tty-colors": "0.*.*"
     },
