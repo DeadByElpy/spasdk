@@ -22,16 +22,16 @@ app.init({
     //plugins: Object.keys(require('./package.json').optionalDependencies)
     plugins: [
         'spa-plugin-jade',
-        'spa-plugin-livereload',
-        'spa-plugin-sass',
-        'spa-plugin-static',
-        'spa-plugin-wamp',
-        'spa-plugin-webpack',
-        'spa-plugin-webui'
+        //'spa-plugin-livereload',
+        //'spa-plugin-sass',
+        //'spa-plugin-static',
+        //'spa-plugin-wamp',
+        //'spa-plugin-webpack',
+        //'spa-plugin-webui'
     ]
 });
 
-//console.log(runner.tasks);
+console.log(runner.tasks);
 
 
 runner.task('default',

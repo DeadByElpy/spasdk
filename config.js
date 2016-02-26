@@ -1,5 +1,5 @@
 /**
- * Common configuration for SPA gulp tasks.
+ * Common configuration for plugins.
  *
  * @author Stanislav Kalashnik <darkpark.main@gmail.com>
  * @license GNU GENERAL PUBLIC LICENSE Version 3
@@ -11,7 +11,7 @@ var path = require('path');
 
 
 // root SPA config
-// to be extended in other gulp packages
+// to be extended in other plugins
 module.exports = {
     //default: {
     // directory to look for source files

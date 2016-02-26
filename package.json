@@ -13,14 +13,12 @@
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
-        "chokidar": "1.*.*",
         "cjs-emitter": "1.*.*",
         "cjs-runner": "cjssdk/runner",
         "commander": "2.*.*",
         "debug": "2.*.*",
         "extend": "3.*.*",
         "ip": "1.*.*",
-        "node-notifier": "4.*.*",
         "tty-colors": "0.*.*"
     },
     "optionalDependencies": {
