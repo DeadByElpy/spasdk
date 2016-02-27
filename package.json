@@ -13,7 +13,7 @@
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
-        "cjs-emitter": "1.*.*",
+        "cjs-emitter": "cjssdk/emitter",
         "cjs-runner": "cjssdk/runner",
         "commander": "2.*.*",
         "debug": "2.*.*",
