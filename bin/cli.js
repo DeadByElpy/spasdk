@@ -8,9 +8,32 @@
 'use strict';
 
 var app    = require('../index'),
-    runner = app.runner;
+    debug  = require('debug')('app:cli'),
+    runner = app.runner,
+    tasks  = process.argv.slice(2);
 
-runner.run(runner.serial.apply(runner, process.argv.slice(2)));
+// add main task
+if ( !tasks.length ) {
+    tasks.push('default');
+}
+
+debug('tasks to execute', tasks);
+
+runner.run(runner.serial.apply(runner, tasks));
+
+
+//var tList = [], aList = [];
+//
+//Object.keys(this.tasks).sort().forEach(function ( name ) {
+//    console.log(typeof self.tasks[name]);
+//    if ( typeof self.tasks[name] === 'function' ) {
+//        tList.push(name);
+//    } else {
+//        aList.push(name);
+//    }
+//});
+//this.debug('tasks: ' + tList.join(', '));
+//this.debug('aliases: ' + aList.join(', '));
 
 /*var program = require('commander'),
     pkgData = require('../package.json');
