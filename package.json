@@ -22,6 +22,7 @@
         "tty-colors": "0.*.*"
     },
     "optionalDependencies": {
+        "spa-plugin-css": "spasdk/plugin-css",
         "spa-plugin-eslint": "spasdk/plugin-eslint",
         "spa-plugin-gettext": "spasdk/plugin-gettext",
         "spa-plugin-jade": "spasdk/plugin-jade",
