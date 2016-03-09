@@ -21,6 +21,9 @@
         "ip": "1.*.*",
         "tty-colors": "0.*.*"
     },
+    "devDependencies": {
+        "spa-eslint-config": "spasdk/eslint-config"
+    },
     "optionalDependencies": {
         "spa-plugin-css": "spasdk/plugin-css",
         "spa-plugin-eslint": "spasdk/plugin-eslint",
