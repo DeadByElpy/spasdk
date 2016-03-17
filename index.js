@@ -5,7 +5,7 @@
 
 'use strict';
 
-global.DEBUG = true;
+global.DEVELOP = true;
 
 var app    = require('./lib/app'),
     runner = app.runner;
