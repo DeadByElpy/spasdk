@@ -18,8 +18,7 @@
         "commander": "2.*.*",
         "debug": "2.*.*",
         "extend": "3.*.*",
-        "ip": "1.*.*",
-        "tty-colors": "0.*.*"
+        "ip": "1.*.*"
     },
     "devDependencies": {
         "spa-eslint-config": "spasdk/eslint-config"
