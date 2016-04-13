@@ -44,7 +44,7 @@ program
     .option('-l, --list <items>', 'A list')
     .parse(process.argv);
 
-global.DEBUG = true;
+global.DEVELOP = true;
 
 // enable colors in console
 require('tty-colors');
