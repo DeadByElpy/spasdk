@@ -25,7 +25,7 @@ module.exports = require(require('./lib/app').paths.root);
 //         'spa-plugin-static',
 //         'spa-plugin-wamp',
 //         'spa-plugin-webpack',
-//         'spa-plugin-webui'
+//         'spa-webui'
 //     ]
 // });
 //

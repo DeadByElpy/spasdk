@@ -19,8 +19,7 @@ app.init({
         'spa-plugin-sass',
         'spa-plugin-static',
         'spa-plugin-wamp',
-        'spa-plugin-webpack',
-        'spa-plugin-webui'
+        'spa-plugin-webpack'
     ]
 });
 
@@ -30,15 +29,14 @@ runner.task('build', runner.serial('jade:build', 'webpack:build', /*'sass:cache'
 runner.task('watch', runner.parallel(
     'jade:watch:develop',
     'webpack:watch:develop',
-    //'sass:cache:watch:develop',
     'sass:watch:develop',
     'css:watch:develop'
 ));
 
 runner.task('serve', runner.parallel(
-    'static:serve:develop',
     'wamp:serve:default',
-    'webui:serve:default',
+    'static:serve:default',
+    'static:serve:webui',
     'livereload:watch:default'
 ));
 

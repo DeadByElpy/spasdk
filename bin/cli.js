@@ -61,6 +61,6 @@ require('../lib/app').init({
         'spa-plugin-static',
         'spa-plugin-wamp',
         'spa-plugin-webpack',
-        'spa-plugin-webui'
+        'spa-webui'
     ]
 });/**/
