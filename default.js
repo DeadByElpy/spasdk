@@ -17,6 +17,7 @@ app.init({
         'spa-plugin-jade',
         'spa-plugin-livereload',
         'spa-plugin-sass',
+        'spa-plugin-ssh',
         'spa-plugin-static',
         'spa-plugin-wamp',
         'spa-plugin-webpack'
