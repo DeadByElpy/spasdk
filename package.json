@@ -12,7 +12,8 @@
     },
     "bin": "./bin/cli.js",
     "scripts": {
-        "lint": "eslint *.js",
+        "lint": "eslint .",
+        "test": "npm run lint",
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
@@ -25,6 +26,7 @@
         "node-notifier": "4.*.*"
     },
     "devDependencies": {
+        "eslint": "2.*.*",
         "spa-eslint-config": "spasdk/eslint-config"
     },
     "optionalDependencies": {

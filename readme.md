@@ -1,8 +1,9 @@
 Development tasks
 =================
 
+[![Build Status](https://img.shields.io/travis/spasdk/spasdk.svg?style=flat-square)](https://travis-ci.org/spasdk/spasdk)
 [![NPM version](https://img.shields.io/npm/v/spasdk.svg?style=flat-square)](https://www.npmjs.com/package/spasdk)
-[![Dependencies Status](https://img.shields.io/david/spasdk/system.svg?style=flat-square)](https://david-dm.org/spasdk/system)
+[![Dependencies Status](https://img.shields.io/david/spasdk/spasdk.svg?style=flat-square)](https://david-dm.org/spasdk/spasdk)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-blue.svg?style=flat-square)](https://gitter.im/DarkPark/spasdk)
 
 
@@ -88,7 +89,7 @@ gulp jade:config
 
 ## Contribution ##
 
-If you have any problem or suggestion please open an issue [here](https://github.com/spasdk/system/issues).
+If you have any problem or suggestion please open an issue [here](https://github.com/spasdk/spasdk/issues).
 Pull requests are welcomed with respect to the [JavaScript Code Style](https://github.com/DarkPark/jscs).
 
 
