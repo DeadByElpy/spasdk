@@ -5,11 +5,19 @@
 
 'use strict';
 
+var path = require('path'),
+    app  = require('./lib/app'),
+    argv = require('minimist')(process.argv.slice(2)),
+    file = argv.i || argv.index || app.paths.root;
+
 global.DEVELOP = true;
+
+// command line arguments
+app.argv = argv;
 
 // load user-defined config
 // by default - index.js in user project dir
-module.exports = require(require('./lib/app').paths.root);
+module.exports = require(path.resolve(file));
 
 
 // process.exit();

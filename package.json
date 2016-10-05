@@ -19,10 +19,10 @@
     "dependencies": {
         "cjs-emitter": "cjssdk/emitter",
         "cjs-runner": "cjssdk/runner",
-        "commander": "2.*.*",
         "debug": "2.*.*",
         "extend": "3.*.*",
         "ip": "1.*.*",
+        "minimist": "1.*.*",
         "node-notifier": "4.*.*"
     },
     "devDependencies": {

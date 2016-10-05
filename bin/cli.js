@@ -10,7 +10,7 @@
 var app    = require('../index'),
     debug  = require('debug')('app:cli'),
     runner = app.runner,
-    tasks  = process.argv.slice(2);
+    tasks  = app.argv._;
 
 // add main task
 if ( !tasks.length ) {
