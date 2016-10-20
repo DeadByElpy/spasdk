@@ -1,9 +1,10 @@
 Development tasks
 =================
 
-[![Build Status](https://img.shields.io/travis/spasdk/spasdk.svg?style=flat-square)](https://travis-ci.org/spasdk/spasdk)
-[![NPM version](https://img.shields.io/npm/v/spasdk.svg?style=flat-square)](https://www.npmjs.com/package/spasdk)
-[![Dependencies Status](https://img.shields.io/david/spasdk/spasdk.svg?style=flat-square)](https://david-dm.org/spasdk/spasdk)
+[![build status](https://img.shields.io/travis/spasdk/spasdk.svg?style=flat-square)](https://travis-ci.org/spasdk/spasdk)
+[![npm version](https://img.shields.io/npm/v/spasdk.svg?style=flat-square)](https://www.npmjs.com/package/spasdk)
+[![dependencies status](https://img.shields.io/david/spasdk/spasdk.svg?style=flat-square)](https://david-dm.org/spasdk/spasdk)
+[![devDependencies status](https://img.shields.io/david/dev/spasdk/spasdk.svg?style=flat-square)](https://david-dm.org/spasdk/spasdk?type=dev)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-blue.svg?style=flat-square)](https://gitter.im/DarkPark/spasdk)
 
 
