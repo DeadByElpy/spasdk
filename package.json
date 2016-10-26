@@ -30,7 +30,7 @@
         "spa-eslint-config": "1.*.*"
     },
     "optionalDependencies": {
-        "spa-plugin-css": "spasdk/plugin-css",
+        "spa-plugin-css": "1.*.*",
         "spa-plugin-eslint": "spasdk/plugin-eslint",
         "spa-plugin-gettext": "spasdk/plugin-gettext",
         "spa-plugin-jade": "spasdk/plugin-jade",
