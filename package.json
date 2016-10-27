@@ -35,7 +35,7 @@
         "spa-plugin-gettext": "0.0.*",
         "spa-plugin-jade": "1.*.*",
         "spa-plugin-livereload": "1.*.*",
-        "spa-plugin-static": "spasdk/plugin-static",
+        "spa-plugin-static": "1.*.*",
         "spa-plugin-sass": "1.*.*",
         "spa-plugin-ssh": "1.*.*",
         "spa-plugin-wamp": "spasdk/plugin-wamp",
