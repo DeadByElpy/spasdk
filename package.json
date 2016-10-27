@@ -37,7 +37,7 @@
         "spa-plugin-livereload": "1.*.*",
         "spa-plugin-static": "spasdk/plugin-static",
         "spa-plugin-sass": "1.*.*",
-        "spa-plugin-ssh": "spasdk/plugin-ssh",
+        "spa-plugin-ssh": "1.*.*",
         "spa-plugin-wamp": "spasdk/plugin-wamp",
         "spa-plugin-webpack": "spasdk/plugin-webpack",
         "spa-plugin-zip": "spasdk/plugin-zip"
