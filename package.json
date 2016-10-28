@@ -45,7 +45,8 @@
     "keywords": [
         "spa",
         "spasdk",
-        "framework"
+        "framework",
+        "runner"
     ],
     "license": "GPL-3.0"
 }
