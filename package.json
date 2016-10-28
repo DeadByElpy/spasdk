@@ -39,7 +39,7 @@
         "spa-plugin-sass": "1.*.*",
         "spa-plugin-ssh": "1.*.*",
         "spa-plugin-wamp": "1.*.*",
-        "spa-plugin-webpack": "spasdk/plugin-webpack",
+        "spa-plugin-webpack": "1.*.*",
         "spa-plugin-zip": "spasdk/plugin-zip"
     },
     "keywords": [
