@@ -40,7 +40,7 @@
         "spa-plugin-ssh": "1.*.*",
         "spa-plugin-wamp": "1.*.*",
         "spa-plugin-webpack": "1.*.*",
-        "spa-plugin-zip": "spasdk/plugin-zip"
+        "spa-plugin-zip": "0.0.*"
     },
     "keywords": [
         "spa",
