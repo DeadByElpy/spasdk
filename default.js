@@ -14,6 +14,7 @@ app.init({
     //plugins: Object.keys(require('./package.json').optionalDependencies)
     plugins: [
         'spa-plugin-css',
+        'spa-plugin-gettext',
         'spa-plugin-jade',
         'spa-plugin-livereload',
         'spa-plugin-sass',
