@@ -31,8 +31,8 @@
     },
     "optionalDependencies": {
         "spa-plugin-css": "1.*.*",
-        "spa-plugin-eslint": "0.0.*",
-        "spa-plugin-gettext": "0.0.*",
+        "spa-plugin-eslint": "0.*.*",
+        "spa-plugin-gettext": "0.*.*",
         "spa-plugin-jade": "1.*.*",
         "spa-plugin-livereload": "1.*.*",
         "spa-plugin-static": "1.*.*",
@@ -40,7 +40,7 @@
         "spa-plugin-ssh": "1.*.*",
         "spa-plugin-wamp": "1.*.*",
         "spa-plugin-webpack": "1.*.*",
-        "spa-plugin-zip": "0.0.*"
+        "spa-plugin-zip": "0.*.*"
     },
     "keywords": [
         "spa",
