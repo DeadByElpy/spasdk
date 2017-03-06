@@ -1,6 +1,6 @@
 {
     "name": "spasdk",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "SPA development environment and tools.",
     "author": {
         "name": "Stanislav Kalashnik",
