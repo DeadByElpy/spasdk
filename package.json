@@ -19,11 +19,11 @@
     "dependencies": {
         "cjs-emitter": "1.*.*",
         "cjs-runner": "1.*.*",
-        "debug": "2.*.*",
+        "debug": "3.*.*",
         "extend": "3.*.*",
         "ip": "1.*.*",
         "minimist": "1.*.*",
-        "node-notifier": "4.*.*"
+        "node-notifier": "5.*.*"
     },
     "devDependencies": {
         "eslint": "4.*.*",
