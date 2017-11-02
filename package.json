@@ -12,7 +12,7 @@
     },
     "bin": "./bin/cli.js",
     "scripts": {
-        "lint": "eslint .",
+        "lint": "eslint --ignore-pattern '/docs/' .",
         "test": "npm run lint",
         "jsdoc": "jsdoc --destination docs *.js readme.md"
     },
